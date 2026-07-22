@@ -168,7 +168,23 @@ with explicit confirmation. Five numbers per side, a random UUID, nothing else
 public `/v1/stats` shows medians labelled as self-reported data. Full policy:
 [`docs/telemetry.md`](docs/telemetry.md). **Default remains zero network.**
 
-### 7. Ecosystem radar
+### 7. Loop mode: `/token-loop` — for the age of autonomous agents 🔁
+
+Loops (routines, cron agents, PR babysitters) are the new default — and the
+biggest unoptimized token leak: **every wakeup re-pays the full context,
+usually just to discover nothing changed.** Nobody else optimizes this.
+
+`/token-loop` installs a deterministic **change-gate** in front of any
+recurring task: a zero-LLM fingerprint check (`scripts/loop_gate.py`) runs
+BEFORE the model thinks. Unchanged → the turn ends in ~one Bash call, silent.
+Changed → the gate says exactly what moved, so the loop reads only that. And
+after a day of history, `loop_gate.py suggest` computes the polling interval
+your loop *should* use from how often the state *actually* changes — in our
+tests, a 5-minute poll watching twice-a-day changes meant ~92% of wakeups
+eliminated outright (your number comes from your own history, not our claim).
+Patterns and honest limits: [`docs/loops.md`](docs/loops.md).
+
+### 8. Ecosystem radar
 
 We analyzed the most-starred Claude Code projects on GitHub and mapped them in
 [`docs/ecosystem.md`](docs/ecosystem.md): what we **absorbed** (re-implemented,
@@ -180,7 +196,7 @@ engine swapping) and what we deliberately did **not** absorb — heavy framework
 pay context rent on every session. The bar: a technique must save more than it
 costs to have installed.
 
-### 8. Experimental — opt-in, with tradeoffs ⚠️
+### 9. Experimental — opt-in, with tradeoffs ⚠️
 
 Included for completeness, **never applied automatically**:
 
@@ -202,6 +218,7 @@ commands/
   token-optimize.md       # /token-optimize
   token-usage.md          # /token-usage — local log analytics
   token-progress.md       # /token-progress — before/after proof
+  token-loop.md           # /token-loop — change-gate for recurring agents
 agents/token-auditor.md   # review subagent (haiku)
 skills/minimum-viable-model/SKILL.md
 output-styles/            # caveman.md · telegraphic.md · concise.md
@@ -211,6 +228,7 @@ scripts/
   usage_stats.py          # usage analytics (ccusage-inspired, no deps)
   progress.py             # baseline + before/after proof
   share_stats.py          # opt-in benchmark sharing (shows payload first)
+  loop_gate.py            # deterministic change-gate for loops
   audit.py                # deterministic audit engine
   compress_output.py      # output compressor
   install_styles.py       # installs the output modes
@@ -220,6 +238,7 @@ docs/
   official-best-practices.md  # Anthropic's official guidance, distilled
   ecosystem.md                # radar of the ecosystem's top libraries
   telemetry.md                # zero by default; opt-in aggregates policy
+  loops.md                    # loop discipline — the six loop leaks
   engine-swap.md              # experimental (opt-in)
 server/                       # community benchmark server (stdlib, self-hostable)
 ```

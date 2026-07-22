@@ -31,6 +31,11 @@ Show this menu (adapt to what the user asks):
 - Skill `minimum-viable-model` — route grunt work to Haiku, keep frontier for judgment.
 - Subagent `token-auditor` — reviews project logic for waste (runs on Haiku).
 
+**Loop mode (recurring/autonomous agents)**
+- `/token-loop` — deterministic change-gate: quiet wakeups end in ~zero tokens;
+  `loop_gate.py suggest` tunes the polling interval from YOUR history.
+  Patterns: `docs/loops.md`.
+
 **Input compression**
 - `some-noisy-cmd 2>&1 | python3 ${CLAUDE_PLUGIN_ROOT}/scripts/compress_output.py --stats`
 

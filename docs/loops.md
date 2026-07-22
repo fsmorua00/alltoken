@@ -16,7 +16,32 @@ single wakeup wastes, the schedule pays it 24-100×/day.
 | 5 | **No-op narration** — "Still watching, nothing to report 👍" every 10 minutes | Discipline rule: quiet wakeups are SILENT. Summaries only on change or completion |
 | 6 | **Frontier model on watch duty** — the check turn needs no reasoning | The gate removes most check turns entirely; for the rest, minimum-viable-model applies |
 
-## The core pattern
+## The seventh leak: batch work over N items
+
+The worst tangle of all: "analyze these 100 lawsuits, one per session/wakeup."
+Without external state the agent re-derives progress by reasoning ("which ones
+did I do?"), re-analyzes finished items, and carries every previous result in
+context until it drowns in its own history.
+
+Fix: `work_queue.py` — a crash-safe, file-based queue that IS the progress:
+
+```
+wakeup
+  └─ work_queue.py next --name cases
+       ├─ ALL DONE (exit 3) → report → final summary → STOP the loop
+       ├─ in-progress elsewhere (exit 4) → end turn silently
+       └─ CLAIMED i042 "Processo 0001234-56"
+            └─ process ONLY i042 → write results/cases/i042.md
+               → work_queue.py done --id i042 --note "risco alto; ver arquivo"
+               → arm next wakeup → end turn
+```
+
+Properties: atomic writes (tmp+rename), stale-claim reclaim after a timeout
+(a crashed iteration's item returns to the pool), fail/retry with a max-attempt
+cap, `status` with ETA from real pace, `report` as the final index. Context
+stays one-item-small whether N is 10 or 10,000. Set up with `/token-batch`.
+
+## The core pattern (watch-style loops)
 
 ```
 wakeup

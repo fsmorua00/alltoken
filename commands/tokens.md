@@ -34,6 +34,8 @@ Show this menu (adapt to what the user asks):
 **Loop mode (recurring/autonomous agents)**
 - `/token-loop` — deterministic change-gate: quiet wakeups end in ~zero tokens;
   `loop_gate.py suggest` tunes the polling interval from YOUR history.
+- `/token-batch` — process N items across wakeups without tangling: crash-safe
+  queue, claim one → do one → done → end turn. Context stays one-item-small.
   Patterns: `docs/loops.md`.
 
 **Input compression**

@@ -182,7 +182,15 @@ after a day of history, `loop_gate.py suggest` computes the polling interval
 your loop *should* use from how often the state *actually* changes — in our
 tests, a 5-minute poll watching twice-a-day changes meant ~92% of wakeups
 eliminated outright (your number comes from your own history, not our claim).
-Patterns and honest limits: [`docs/loops.md`](docs/loops.md).
+
+And for the worst tangle — **batch work over N items** ("analyze these 100
+lawsuits, one per wakeup"), where agents classically lose track, re-analyze
+finished items and drown in their own history — `/token-batch` installs a
+crash-safe work queue (`scripts/work_queue.py`): claim one item → process only
+it → write the result to a file → mark done → end turn. Progress lives in the
+queue file, never in reasoning; context stays one-item-small whether N is 10
+or 10,000; crashed iterations are reclaimed automatically. Patterns and honest
+limits: [`docs/loops.md`](docs/loops.md).
 
 ### 8. Ecosystem radar
 
@@ -219,6 +227,7 @@ commands/
   token-usage.md          # /token-usage — local log analytics
   token-progress.md       # /token-progress — before/after proof
   token-loop.md           # /token-loop — change-gate for recurring agents
+  token-batch.md          # /token-batch — crash-safe queue for N-item loops
 agents/token-auditor.md   # review subagent (haiku)
 skills/minimum-viable-model/SKILL.md
 output-styles/            # caveman.md · telegraphic.md · concise.md
@@ -229,6 +238,7 @@ scripts/
   progress.py             # baseline + before/after proof
   share_stats.py          # opt-in benchmark sharing (shows payload first)
   loop_gate.py            # deterministic change-gate for loops
+  work_queue.py           # crash-safe batch queue for N-item loops
   audit.py                # deterministic audit engine
   compress_output.py      # output compressor
   install_styles.py       # installs the output modes

@@ -184,7 +184,17 @@ só aquilo. E com um dia de histórico, `loop_gate.py suggest` calcula o
 intervalo que o loop *deveria* usar a partir da frequência real de mudanças —
 nos nossos testes, um poll de 5 min vigiando algo que muda 2×/dia significava
 ~92% das acordadas eliminadas (o seu número vem do seu histórico, não da nossa
-promessa). Padrões e limites honestos: [`docs/loops.md`](docs/loops.md).
+promessa).
+
+E para o pior embolado de todos — **trabalho em lote sobre N itens** ("analise
+estes 100 processos judiciais, um por acordada"), onde agentes classicamente
+perdem o fio, re-analisam itens prontos e afogam no próprio histórico — o
+`/token-batch` instala uma fila crash-safe (`scripts/work_queue.py`): pega um
+item → processa só ele → grava o resultado em arquivo → marca feito → encerra o
+turno. O progresso mora na fila, nunca no raciocínio; o contexto fica do
+tamanho de UM item, seja N igual a 10 ou 10.000; iterações que morrem no meio
+são resgatadas automaticamente. Padrões e limites honestos:
+[`docs/loops.md`](docs/loops.md).
 
 ### 8. Radar do ecossistema
 
@@ -221,6 +231,7 @@ commands/
   token-usage.md          # /token-usage — analytics dos logs locais
   token-progress.md       # /token-progress — prova do antes/depois
   token-loop.md           # /token-loop — portão de mudança p/ agentes recorrentes
+  token-batch.md          # /token-batch — fila crash-safe p/ loops de N itens
 agents/token-auditor.md   # subagente de revisão (haiku)
 skills/minimum-viable-model/SKILL.md
 output-styles/            # caveman.md · telegraphic.md · concise.md
@@ -231,6 +242,7 @@ scripts/
   progress.py             # baseline + prova do antes/depois
   share_stats.py          # envio opt-in ao benchmark (mostra o payload antes)
   loop_gate.py            # portão de mudança determinístico p/ loops
+  work_queue.py           # fila crash-safe p/ loops de N itens
   audit.py                # motor de auditoria determinístico
   compress_output.py      # compressor de output
   install_styles.py       # instala os modos de saída

@@ -32,6 +32,34 @@ Veja o cardápio completo a qualquer momento com **`/tokenwise`**.
 
 ---
 
+## A mágica: `/alltoken` ✨
+
+Instalou o plugin? **Um comando aplica tudo de uma vez, em qualquer projeto:**
+
+```
+/alltoken             # aplica tudo + ativa o modo Concise
+/alltoken caveman     # idem, mas com o Claude falando caveman 🦴
+```
+
+O que acontece num passo só:
+
+1. **Audita** o piso de contexto do projeto (antes/depois).
+2. **Instala e ativa** os modos de saída (Caveman/Telegraphic/Concise) via
+   `outputStyle` nas settings do projeto.
+3. **Injeta o guia oficial da Anthropic** como um bloco enxuto de "disciplina de
+   token" no CLAUDE.md — concisão, higiene de contexto, modelo mínimo viável,
+   scripts em vez de re-prompt. Como o CLAUDE.md carrega em toda sessão, **todas
+   as sessões futuras do projeto passam a seguir as best practices oficiais
+   automaticamente**.
+4. **Propõe** o enxugamento do CLAUDE.md se estiver acima das ~200 linhas
+   (mostrando o diff) e lista o que precisa de decisão humana (ex.: MCPs).
+
+O bloco é **idempotente**: rodar `/alltoken` de novo atualiza em vez de duplicar.
+Reverter: `/output-style default` + `git checkout`. O guia oficial destilado está
+em [`docs/official-best-practices.md`](docs/official-best-practices.md).
+
+---
+
 ## Instalação
 
 ### Como plugin (recomendado)
@@ -123,6 +151,7 @@ Incluídas para completude, **nunca aplicadas automaticamente**:
 ```
 .claude-plugin/{plugin,marketplace}.json   # manifesto + instalável como marketplace
 commands/
+  alltoken.md             # /alltoken — a mágica: aplica tudo num passo
   tokenwise.md            # /tokenwise — índice de tudo
   token-audit.md          # /token-audit
   token-optimize.md       # /token-optimize
@@ -131,12 +160,15 @@ skills/minimum-viable-model/SKILL.md
 output-styles/            # caveman.md · telegraphic.md · concise.md
 hooks/hooks.json          # SessionStart nudge (1 linha, só se houver desperdício alto)
 scripts/
+  apply_all.py            # motor do /alltoken (one-shot, idempotente)
   audit.py                # motor de auditoria determinístico
   compress_output.py      # compressor de output
   install_styles.py       # instala os modos de saída
   text_to_image.py        # experimental (opt-in)
   session_start.py        # hook de aviso
-docs/engine-swap.md       # experimental (opt-in)
+docs/
+  official-best-practices.md  # guia oficial da Anthropic, destilado
+  engine-swap.md              # experimental (opt-in)
 ```
 
 ---
@@ -147,7 +179,10 @@ docs/engine-swap.md       # experimental (opt-in)
 token-saving techniques in one place: context auditing (`/token-audit`,
 `/token-optimize`), output modes that cut response tokens (**Caveman** —
 Claude speaks like a caveman — plus Telegraphic and Concise), minimum-viable-model
-routing (grunt work → Haiku), and deterministic output compression. Proven
+routing (grunt work → Haiku), and deterministic output compression. **One command
+— `/alltoken` — applies everything to a project in a single shot**, including an
+idempotent CLAUDE.md block that enforces Anthropic's official best practices on
+every future session. Proven
 techniques are ready to use; gimmicky/risky ones (text-as-image, engine swapping)
 are bundled but opt-in with honest warnings, never applied silently. Code,
 commands, and numbers stay exact in every output mode. Install with

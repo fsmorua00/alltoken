@@ -1,7 +1,7 @@
 {
   "name": "tokenwise",
-  "version": "0.2.0",
-  "description": "One toolbox aggregating the best Claude Code token-saving techniques: context auditing, output modes (Caveman/Telegraphic/Concise), minimum-viable-model routing, and output compression.",
+  "version": "0.3.0",
+  "description": "One command (/alltoken) applies every proven Claude Code token-saving technique at once: context auditing, output modes (Caveman/Telegraphic/Concise), official best-practice enforcement via CLAUDE.md, minimum-viable-model routing, and output compression.",
   "author": {
     "name": "fsmoura00"
   },

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-tokenwise install-styles — copy the bundled output styles into a project (or the
+alltoken install-styles — copy the bundled output styles into a project (or the
 user home) so they can be activated with Claude Code's `/output-style` command.
 
 Output styles change how Claude writes its responses, which is the cheapest lever
@@ -32,7 +32,7 @@ def bundled_styles() -> list[Path]:
 
 
 def main(argv: list[str] | None = None) -> int:
-    ap = argparse.ArgumentParser(description="install tokenwise output styles")
+    ap = argparse.ArgumentParser(description="install alltoken output styles")
     ap.add_argument("--user", action="store_true", help="install to ~/.claude")
     ap.add_argument("--target", default=".", help="project dir (default: cwd)")
     ap.add_argument("--list", action="store_true", help="list bundled styles and exit")

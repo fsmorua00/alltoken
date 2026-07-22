@@ -1,6 +1,6 @@
 {
-  "name": "tokenwise",
-  "version": "0.4.0",
+  "name": "alltoken",
+  "version": "0.5.0",
   "description": "One command (/alltoken) applies every proven Claude Code token-saving technique at once: context auditing, output modes (Caveman/Telegraphic/Concise), official best-practice enforcement via CLAUDE.md, minimum-viable-model routing, local usage analytics, and output compression.",
   "author": {
     "name": "fsmorua00"

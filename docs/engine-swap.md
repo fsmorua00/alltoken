@@ -3,7 +3,7 @@
 Claude Code is a *harness*; the model behind it can be pointed at other providers
 via environment variables. Some providers price compute differently and can give
 you more capacity per dollar for routine work. This is a **your-call** technique —
-tokenwise documents it but never flips it for you.
+alltoken documents it but never flips it for you.
 
 ## Honest tradeoffs
 
@@ -40,7 +40,7 @@ gateway that gives Claude Code one stable endpoint and handles provider/model
 routing rules for you. If you go down this road, use it rather than hand-rolling
 environment variables; the caveats above still apply in full.
 
-## The tokenwise recommendation
+## The alltoken recommendation
 
 Prefer the **minimum-viable-model** approach *inside* the Anthropic ecosystem
 first (route grunt work to Haiku via the `minimum-viable-model` skill). It gets

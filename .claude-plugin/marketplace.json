@@ -1,5 +1,5 @@
 {
-  "name": "tokenwise-marketplace",
+  "name": "alltoken-marketplace",
   "owner": {
     "name": "fsmorua00"
   },
@@ -8,7 +8,7 @@
   },
   "plugins": [
     {
-      "name": "tokenwise",
+      "name": "alltoken",
       "source": "./",
       "description": "Audits project logic for token waste and applies safe, automatic optimizations."
     }

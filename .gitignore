@@ -11,5 +11,5 @@ venv/
 .vscode/
 *.swp
 
-# tokenwise local scratch
+# alltoken local scratch
 *.audit.json

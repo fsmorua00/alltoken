@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-tokenwise apply-all — the /alltoken engine: apply every safe token-saving
+alltoken apply-all — the /alltoken engine: apply every safe token-saving
 technique to a project in ONE shot.
 
 Deterministic parts only (no model, no network):
@@ -39,10 +39,10 @@ import audit  # noqa: E402  (local module)
 
 STYLES_DIR = HERE.parent / "output-styles"
 
-MARK_START = "<!-- tokenwise:start -->"
-MARK_END = "<!-- tokenwise:end -->"
+MARK_START = "<!-- alltoken:start -->"
+MARK_END = "<!-- alltoken:end -->"
 
-BLOCK_BODY = """## Token discipline (tokenwise — auto-managed; run /alltoken to refresh)
+BLOCK_BODY = """## Token discipline (alltoken — auto-managed; run /alltoken to refresh)
 - Be concise: answer directly; no preamble/postamble; bullets and code over prose.
 - Read only what's needed: targeted search/partial reads over whole files;
   batch independent tool calls in parallel.
@@ -144,7 +144,7 @@ def activate_style(root: Path, style_key: str, shared: bool) -> tuple[str, str]:
 # Orchestration
 # --------------------------------------------------------------------------- #
 def main(argv: list[str] | None = None) -> int:
-    ap = argparse.ArgumentParser(description="tokenwise one-shot applier (/alltoken)")
+    ap = argparse.ArgumentParser(description="alltoken one-shot applier (/alltoken)")
     ap.add_argument("--root", default=".", help="project root (default: cwd)")
     ap.add_argument(
         "--style",
@@ -206,7 +206,7 @@ def main(argv: list[str] | None = None) -> int:
 
     ok = "✔"
     print("═" * 64)
-    print("  tokenwise · /alltoken (one-shot)")
+    print("  alltoken · /alltoken (one-shot)")
     print(f"  project: {root}")
     print("═" * 64)
     print(f"  before: context floor ~{before.context_floor_tokens:,} tok")

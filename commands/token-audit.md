@@ -4,7 +4,7 @@ argument-hint: "[--include-user]"
 allowed-tools: Bash(python3:*), Read, Glob, Grep
 ---
 
-You are running the **tokenwise audit**. Goal: find where this project silently
+You are running the **alltoken audit**. Goal: find where this project silently
 burns tokens on every Claude Code session, and report a ranked plan — without
 changing anything.
 

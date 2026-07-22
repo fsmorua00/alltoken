@@ -4,7 +4,7 @@ argument-hint: "[caveman|telegraphic|concise] [--shared] [--yes]"
 allowed-tools: Bash(python3:*), Read, Edit, Write, Glob, Grep
 ---
 
-You are running **/alltoken** — tokenwise's one-shot setup. Goal: in a single
+You are running **/alltoken** — alltoken's one-shot setup. Goal: in a single
 command, this project gets every proven token-saving technique AND a persistent
 block of Anthropic's official best practices that every future session loads.
 

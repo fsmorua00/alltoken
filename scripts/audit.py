@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-tokenwise audit — deterministic token-waste analysis for a project.
+alltoken audit — deterministic token-waste analysis for a project.
 
 Scans the things that silently inflate every Claude Code session before you
 type a single word: CLAUDE.md size, configured MCP servers, skill descriptions,
@@ -309,7 +309,7 @@ SEV_ICON = {"high": "🔴", "medium": "🟡", "low": "🔵", "info": "⚪"}
 def render_human(report: Report) -> str:
     out = []
     out.append("═" * 64)
-    out.append("  tokenwise audit")
+    out.append("  alltoken audit")
     out.append(f"  project: {report.root}")
     out.append("═" * 64)
     out.append("")
@@ -344,7 +344,7 @@ def render_human(report: Report) -> str:
 
 
 def main(argv: list[str] | None = None) -> int:
-    ap = argparse.ArgumentParser(description="tokenwise deterministic audit")
+    ap = argparse.ArgumentParser(description="alltoken deterministic audit")
     ap.add_argument("--root", default=os.getcwd(), help="project root (default: cwd)")
     ap.add_argument("--json", action="store_true", help="emit machine-readable JSON")
     ap.add_argument(

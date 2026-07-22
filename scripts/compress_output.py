@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-tokenwise compress — deterministic noise reduction for verbose command output.
+alltoken compress — deterministic noise reduction for verbose command output.
 
 Pipe a noisy command through this before it lands in Claude's context. It uses
 plain, deterministic rules (no model, no network, no hallucination) to strip the
@@ -119,7 +119,7 @@ def middle_truncate(lines: list[str], max_lines: int) -> tuple[list[str], int]:
 
 
 def main(argv: list[str] | None = None) -> int:
-    ap = argparse.ArgumentParser(description="tokenwise output compressor")
+    ap = argparse.ArgumentParser(description="alltoken output compressor")
     ap.add_argument(
         "--max-lines",
         type=int,
@@ -149,7 +149,7 @@ def main(argv: list[str] | None = None) -> int:
         chars_out = sum(len(l) + 1 for l in final)
         pct = 0 if chars_in == 0 else round(100 * (1 - chars_out / chars_in))
         sys.stderr.write(
-            f"[tokenwise] {n_in} → {len(final)} lines, "
+            f"[alltoken] {n_in} → {len(final)} lines, "
             f"~{pct}% fewer chars ({dropped_c} collapsed, {dropped_t} trimmed)\n"
         )
     return 0

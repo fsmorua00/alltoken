@@ -4,7 +4,7 @@ argument-hint: "[--days N]"
 allowed-tools: Bash(python3:*), Read
 ---
 
-You are running **/token-usage** — tokenwise's local usage analytics (ccusage-
+You are running **/token-usage** — alltoken's local usage analytics (ccusage-
 inspired, dependency-free, nothing leaves the machine).
 
 ## Steps

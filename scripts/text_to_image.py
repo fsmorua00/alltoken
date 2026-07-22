@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-tokenwise text-to-image (EXPERIMENTAL / opt-in) — render a text file as a PNG.
+alltoken text-to-image (EXPERIMENTAL / opt-in) — render a text file as a PNG.
 
 The idea (from the "images instead of text" trick): a page of text attached as an
 image can sometimes be processed with fewer tokens than the same text inline.

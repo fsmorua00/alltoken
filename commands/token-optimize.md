@@ -4,7 +4,7 @@ argument-hint: "[--yes]"
 allowed-tools: Bash(python3:*), Read, Edit, Write, Glob, Grep
 ---
 
-You are running **tokenwise optimize**. Goal: actually apply the safe wins the
+You are running **alltoken optimize**. Goal: actually apply the safe wins the
 audit surfaces. Every change must be reversible via git and shown to the user.
 
 ## Steps

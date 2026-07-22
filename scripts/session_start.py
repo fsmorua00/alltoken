@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-tokenwise SessionStart hook — one-line context-budget nudge.
+alltoken SessionStart hook — one-line context-budget nudge.
 
 Runs the deterministic audit and, ONLY if there is high-severity waste, injects
 a single compact line of context so you're reminded to run `/token-audit`.
@@ -49,7 +49,7 @@ def main() -> int:
     floor = report.context_floor_tokens
     save = report.potential_savings_tokens
     line = (
-        f"[tokenwise] Context floor ~{floor:,} tok; ~{save:,} tok/session of "
+        f"[alltoken] Context floor ~{floor:,} tok; ~{save:,} tok/session of "
         f"high-severity waste detected. Run /token-audit for details."
     )
     out = {"hookSpecificOutput": {"hookEventName": "SessionStart", "additionalContext": line}}

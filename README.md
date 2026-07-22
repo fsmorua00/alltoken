@@ -1,4 +1,4 @@
-# tokenwise
+# alltoken
 
 **Um único plugin para o Claude Code que agrega as melhores técnicas de economia
 de token num só lugar.** Nada de espalhar dez ferramentas soltas — aqui está tudo:
@@ -28,7 +28,7 @@ dessas duas variáveis — ou nos tokens de **entrada** (contexto), de **saída*
 | **Modelo / compute** | Skill `minimum-viable-model`, agente `token-auditor` | Manda trabalho braçal pro Haiku, reserva o modelo forte pro julgamento |
 | **Entrada / logs** | `scripts/compress_output.py` | Comprime output verboso de comandos antes do Claude ler |
 
-Veja o cardápio completo a qualquer momento com **`/tokenwise`**.
+Veja o cardápio completo a qualquer momento com **`/tokens`**.
 
 ---
 
@@ -65,8 +65,8 @@ em [`docs/official-best-practices.md`](docs/official-best-practices.md).
 ### Como plugin (recomendado)
 
 ```
-/plugin marketplace add fsmorua00/Claude
-/plugin install tokenwise@tokenwise-marketplace
+/plugin marketplace add fsmorua00/alltoken
+/plugin install alltoken@alltoken-marketplace
 ```
 
 ### Só os scripts (sem plugin)
@@ -127,7 +127,7 @@ em `haiku` — ele mesmo dá o exemplo.
 
 ```bash
 npm test 2>&1 | python3 scripts/compress_output.py --stats
-# [tokenwise] 3120 → 84 lines, ~94% fewer chars
+# [alltoken] 3120 → 84 lines, ~94% fewer chars
 ```
 
 Regras determinísticas: colapsa duplicatas, remove boilerplate (barras de
@@ -171,7 +171,7 @@ Incluídas para completude, **nunca aplicadas automaticamente**:
 .claude-plugin/{plugin,marketplace}.json   # manifesto + instalável como marketplace
 commands/
   alltoken.md             # /alltoken — a mágica: aplica tudo num passo
-  tokenwise.md            # /tokenwise — índice de tudo
+  tokens.md               # /tokens — índice de tudo
   token-audit.md          # /token-audit
   token-optimize.md       # /token-optimize
   token-usage.md          # /token-usage — analytics dos logs locais
@@ -197,7 +197,7 @@ docs/
 
 ## English
 
-**tokenwise** is a single Claude Code plugin that aggregates the best
+**alltoken** is a single Claude Code plugin that aggregates the best
 token-saving techniques in one place: context auditing (`/token-audit`,
 `/token-optimize`), output modes that cut response tokens (**Caveman** —
 Claude speaks like a caveman — plus Telegraphic and Concise), minimum-viable-model
@@ -208,8 +208,8 @@ every future session. Proven
 techniques are ready to use; gimmicky/risky ones (text-as-image, engine swapping)
 are bundled but opt-in with honest warnings, never applied silently. Code,
 commands, and numbers stay exact in every output mode. Install with
-`/plugin marketplace add fsmorua00/Claude` then
-`/plugin install tokenwise@tokenwise-marketplace`, or run the scripts standalone.
+`/plugin marketplace add fsmorua00/alltoken` then
+`/plugin install alltoken@alltoken-marketplace`, or run the scripts standalone.
 Token counts are ~4-chars/token estimates, never inflated marketing numbers.
 
 ## License

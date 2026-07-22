@@ -1,12 +1,12 @@
 # Ecosystem radar — the top-starred Claude Code projects, analyzed
 
-tokenwise's job is to aggregate the best token-saving techniques into one
+alltoken's job is to aggregate the best token-saving techniques into one
 plugin. Some of the best ideas live in other open-source projects. This is the
 honest map: what we **absorbed** (re-implemented, dependency-free), what we
 **recommend as companions** (better used directly), and what each one does for
 your tokens. Star counts are approximate as of July 2026 — check the repos.
 
-## Absorbed into tokenwise
+## Absorbed into alltoken
 
 | Project | ⭐ | Idea | Where it lives here |
 |---|---|---|---|
@@ -27,7 +27,7 @@ your tokens. Star counts are approximate as of July 2026 — check the repos.
 
 - **Full frameworks (SuperClaude, Claude-Flow, BMAD and friends)** — powerful,
   but they load their own commands/personas/context into every session, which is
-  itself a token cost. tokenwise stays minimal on purpose: our whole surface is
+  itself a token cost. alltoken stays minimal on purpose: our whole surface is
   a handful of commands and one ~200-token CLAUDE.md block.
 - **Big subagent packs (e.g. wshobson/agents, 80+ agents)** — great catalog, and
   their per-agent model tiers (haiku/sonnet/opus) validate our minimum-viable-model
@@ -41,5 +41,5 @@ your tokens. Star counts are approximate as of July 2026 — check the repos.
 
 Prefer the smallest tool that produces the saving. A technique that costs
 context to *have installed* must save more than it costs — that's the bar every
-tokenwise feature has to clear, and the bar we recommend you apply to everything
+alltoken feature has to clear, and the bar we recommend you apply to everything
 in this list.

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-tokenwise usage — local token-usage analytics from Claude Code's own JSONL logs.
+alltoken usage — local token-usage analytics from Claude Code's own JSONL logs.
 
 Inspired by the excellent ccusage (github.com/ryoppippi/ccusage, ~16k stars);
-this is a minimal, dependency-free, deterministic subset bundled with tokenwise
+this is a minimal, dependency-free, deterministic subset bundled with alltoken
 so /token-usage works out of the box. For full cost reports, live dashboards and
 multi-agent support, use ccusage itself (`npx ccusage@latest`).
 
@@ -122,7 +122,7 @@ def render(data: dict, projects_dir: Path, days: int) -> str:
     t = data["totals"]
     out = []
     out.append("═" * 64)
-    out.append("  tokenwise usage — local logs, nothing leaves your machine")
+    out.append("  alltoken usage — local logs, nothing leaves your machine")
     out.append(f"  source: {projects_dir}  ·  window: last {days} day(s)")
     out.append("═" * 64)
     if t["messages"] == 0:
@@ -169,7 +169,7 @@ def render(data: dict, projects_dir: Path, days: int) -> str:
 
 
 def main(argv: list[str] | None = None) -> int:
-    ap = argparse.ArgumentParser(description="tokenwise local usage analytics")
+    ap = argparse.ArgumentParser(description="alltoken local usage analytics")
     ap.add_argument("--dir", default=None, help="projects dir (default: ~/.claude/projects)")
     ap.add_argument("--days", type=int, default=30, help="window in days (default 30; 0 = all)")
     ap.add_argument("--json", action="store_true", help="machine-readable output")

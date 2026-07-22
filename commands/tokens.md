@@ -1,9 +1,9 @@
 ---
-description: Show the tokenwise toolbox — every token-saving tool in this plugin and how to use it.
+description: Show the alltoken toolbox — every token-saving tool in this plugin and how to use it.
 allowed-tools: Bash(python3:*), Read
 ---
 
-Present the **tokenwise toolbox** to the user: a single plugin aggregating the
+Present the **alltoken toolbox** to the user: a single plugin aggregating the
 best Claude Code token-saving techniques. Keep it short and scannable.
 
 If helpful, run `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/audit.py" --root . ` to
@@ -11,7 +11,7 @@ show the current project's context floor alongside the menu.
 
 Show this menu (adapt to what the user asks):
 
-## tokenwise toolbox
+## alltoken toolbox
 
 **One-shot magic**
 - `/alltoken [caveman|telegraphic|concise]` — apply EVERYTHING at once: audit,

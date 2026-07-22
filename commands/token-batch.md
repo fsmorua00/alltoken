@@ -30,13 +30,15 @@ progress — the agent never re-derives it by reasoning.
    > 1. `work_queue.py next --name <name>`
    >    - exit 3 (ALL DONE) → run `report`, deliver the final summary, STOP the loop.
    >    - exit 4 (in progress elsewhere) → end the turn silently.
-   > 2. Process ONLY the claimed item. Do NOT read other items' results, do NOT
+   > 2. Idempotency check: if `results/<name>/<id>.md` ALREADY exists, verify
+   >    it looks complete and jump to step 5 — never redo finished work.
+   > 3. Process ONLY the claimed item. Do NOT read other items' results, do NOT
    >    summarize past progress — the queue already knows it.
-   > 3. Write the item's result to `results/<name>/<id>.md`.
-   > 4. `work_queue.py done --name <name> --id <id> --note "1 line + result path"`
+   > 4. Write the item's result to `results/<name>/<id>.md`.
+   > 5. `work_queue.py done --name <name> --id <id> --note "1 line + result path"`
    >    (on unrecoverable error: `fail --id <id> --note "why"` — it retries up
    >    to --max-attempts, then parks as failed)
-   > 5. End the turn. One item per wakeup. No narration between items.
+   > 6. End the turn. One item per wakeup. No narration between items.
 
 ## Why this saves tokens AND sanity
 

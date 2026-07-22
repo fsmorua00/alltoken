@@ -59,6 +59,36 @@ gate eliminates the reasoning cost of (F − C) wakeups. Whether that's 50% or
 your own gate history. We don't invent the number; your loop's history is the
 number.
 
+## Prior art — and the gap this fills (researched July 2026)
+
+The pain is documented at the source: Anthropic's own engineering writing on
+[long-running agent harnesses](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
+describes agents that "try to do too much at once", run out of context
+mid-work, leaving the next session "to guess at what happened". Community
+reports match: A-B-A failure loops (retrying an approach the agent forgot it
+already failed), permanent information loss on every `/compact`, and duplicate
+work are among the most-reported Claude Code issues.
+
+What exists, and what it doesn't cover:
+
+- **Ralph Wiggum** (official plugin) — re-injects the same prompt in a
+  while-true loop; filesystem/git as state. No per-item ledger, no claim
+  semantics.
+- **[Claude-Autopilot](https://github.com/benbasha/Claude-Autopilot)** (~240⭐)
+  — queues *prompts* in VS Code with auto-resume; not item-level work state.
+- **[task-orchestrator](https://github.com/jpicklyk/task-orchestrator)** (~200⭐),
+  [taskqueue-mcp](https://github.com/chriscarrollsmith/taskqueue-mcp),
+  [agent-task-queue](https://github.com/block/agent-task-queue) — MCP-server
+  task systems; heavyweight, need a running host, aimed at dev workflows.
+
+As far as our research found, **no existing tool combines**: a file-based
+per-item queue + claim-one-at-a-time + stale-claim reclaim (crashed iteration's
+item returns to the pool) + results-to-files convention + compatibility with
+scheduled-wakeup loops where nothing stays running between iterations. That
+combination is exactly `work_queue.py`. One pattern we adopted straight from
+Anthropic's harness write-up: state lives in JSON deliberately — models are
+less likely to inappropriately rewrite JSON than Markdown.
+
 ## What the gate is NOT
 
 - Not a scheduler — it doesn't fire your loop; it makes each firing cheap.

@@ -148,9 +148,15 @@ def main(argv: list[str] | None = None) -> int:
         chars_in = len(raw)
         chars_out = sum(len(l) + 1 for l in final)
         pct = 0 if chars_in == 0 else round(100 * (1 - chars_out / chars_in))
+        if pct >= 0:
+            detail = f"~{pct}% fewer chars"
+        else:
+            # Tiny inputs can grow: collapse annotations outweigh the removed
+            # lines. Say so honestly instead of printing a negative saving.
+            detail = "no saving (input too small — pays off on big logs)"
         sys.stderr.write(
             f"[alltoken] {n_in} → {len(final)} lines, "
-            f"~{pct}% fewer chars ({dropped_c} collapsed, {dropped_t} trimmed)\n"
+            f"{detail} ({dropped_c} collapsed, {dropped_t} trimmed)\n"
         )
     return 0
 

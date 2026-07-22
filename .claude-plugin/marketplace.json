@@ -1,0 +1,16 @@
+{
+  "name": "tokenwise-marketplace",
+  "owner": {
+    "name": "fsmoura00"
+  },
+  "metadata": {
+    "description": "Token-optimization tooling for Claude Code."
+  },
+  "plugins": [
+    {
+      "name": "tokenwise",
+      "source": "./",
+      "description": "Audits project logic for token waste and applies safe, automatic optimizations."
+    }
+  ]
+}

@@ -1,216 +1,201 @@
 # alltoken
 
-**Um único plugin para o Claude Code que agrega as melhores técnicas de economia
-de token num só lugar.** Nada de espalhar dez ferramentas soltas — aqui está tudo:
-auditoria de contexto, modos de saída (incluindo o **Caveman**, o Claude falando
-como neandertal pra cortar tokens), roteamento por modelo mínimo viável e
-compressão de output.
+**One Claude Code plugin that aggregates the best token-saving techniques in a
+single place.** No more hunting through a dozen scattered tools — it's all here:
+context auditing, output modes (including **Caveman**, where Claude answers in
+grunt-short prose), minimum-viable-model routing, local usage analytics, and
+deterministic output compression.
 
-> Filosofia: **ganho real com risco baixo, sem números de economia inflados.**
-> As técnicas comprovadas ficam prontas para usar. As experimentais/gimmicky
-> ficam incluídas mas **opt-in**, com os avisos honestos que elas merecem — nunca
-> aplicadas por baixo dos panos.
+> Philosophy: **real gains at low risk, with no inflated savings numbers.**
+> Proven techniques are ready to use. Experimental/gimmicky ones are included
+> but **opt-in**, with the honest warnings they deserve — never applied behind
+> your back.
 
-*(English summary at the bottom.)*
+🇧🇷 [Leia em Português](README.pt-BR.md)
 
 ---
 
-## A ideia
+## The idea
 
-`compute gasto ≈ tokens processados × modelo usado`. Toda técnica aqui mexe numa
-dessas duas variáveis — ou nos tokens de **entrada** (contexto), de **saída**
-(resposta), ou no **modelo**. O plugin ataca as três frentes:
+`compute spent ≈ tokens processed × model used`. Every technique here moves one
+of those variables — either **input** tokens (context), **output** tokens
+(responses), or the **model**. The plugin attacks all three fronts:
 
-| Frente | Ferramenta | Como |
+| Front | Tool | How |
 |---|---|---|
-| **Entrada / contexto** | `/token-audit`, `/token-optimize` | Mede o "piso de contexto" e enxuga CLAUDE.md, MCPs e skills |
-| **Saída / resposta** | Modos **Caveman · Telegraphic · Concise** | Trocam o estilo do Claude pra gastar menos palavras |
-| **Modelo / compute** | Skill `minimum-viable-model`, agente `token-auditor` | Manda trabalho braçal pro Haiku, reserva o modelo forte pro julgamento |
-| **Entrada / logs** | `scripts/compress_output.py` | Comprime output verboso de comandos antes do Claude ler |
+| **Input / context** | `/token-audit`, `/token-optimize` | Measures the "context floor" and trims CLAUDE.md, MCPs, and skills |
+| **Output / responses** | **Caveman · Telegraphic · Concise** modes | Change how Claude writes so every reply costs less |
+| **Model / compute** | `minimum-viable-model` skill, `token-auditor` agent | Route grunt work to Haiku, save the frontier model for judgment |
+| **Input / logs** | `scripts/compress_output.py` | Compresses verbose command output before Claude reads it |
 
-Veja o cardápio completo a qualquer momento com **`/tokens`**.
-
----
-
-## A mágica: `/alltoken` ✨
-
-Instalou o plugin? **Um comando aplica tudo de uma vez, em qualquer projeto:**
-
-```
-/alltoken             # aplica tudo + ativa o modo Concise
-/alltoken caveman     # idem, mas com o Claude falando caveman 🦴
-```
-
-O que acontece num passo só:
-
-1. **Audita** o piso de contexto do projeto (antes/depois).
-2. **Instala e ativa** os modos de saída (Caveman/Telegraphic/Concise) via
-   `outputStyle` nas settings do projeto.
-3. **Injeta o guia oficial da Anthropic** como um bloco enxuto de "disciplina de
-   token" no CLAUDE.md — concisão, higiene de contexto, modelo mínimo viável,
-   scripts em vez de re-prompt. Como o CLAUDE.md carrega em toda sessão, **todas
-   as sessões futuras do projeto passam a seguir as best practices oficiais
-   automaticamente**.
-4. **Propõe** o enxugamento do CLAUDE.md se estiver acima das ~200 linhas
-   (mostrando o diff) e lista o que precisa de decisão humana (ex.: MCPs).
-
-O bloco é **idempotente**: rodar `/alltoken` de novo atualiza em vez de duplicar.
-Reverter: `/output-style default` + `git checkout`. O guia oficial destilado está
-em [`docs/official-best-practices.md`](docs/official-best-practices.md).
+See the full menu anytime with **`/tokens`**.
 
 ---
 
-## Instalação
+## The magic: `/alltoken` ✨
 
-### Como plugin (recomendado)
+Installed the plugin? **One command applies everything, in any project:**
+
+```
+/alltoken             # applies everything + activates Concise mode
+/alltoken caveman     # same, but Claude talks caveman 🦴
+```
+
+What happens in a single shot:
+
+1. **Audits** the project's context floor (before/after).
+2. **Installs and activates** the output modes (Caveman/Telegraphic/Concise)
+   via the `outputStyle` key in the project settings.
+3. **Injects Anthropic's official guidance** as a lean "token discipline" block
+   in CLAUDE.md — concision, context hygiene, minimum-viable-model routing,
+   scripts over re-prompting. Since CLAUDE.md loads on every session, **every
+   future session in the project follows the official best practices
+   automatically**.
+4. **Proposes** trimming CLAUDE.md if it's over the ~200-line guideline
+   (showing the diff) and lists what needs a human decision (e.g. MCPs).
+
+The block is **idempotent**: re-running `/alltoken` updates it instead of
+duplicating. Revert anytime: `/output-style default` + `git checkout`. The
+distilled official guidance lives in
+[`docs/official-best-practices.md`](docs/official-best-practices.md).
+
+---
+
+## Installation
+
+### As a plugin (recommended)
 
 ```
 /plugin marketplace add fsmorua00/alltoken
 /plugin install alltoken@alltoken-marketplace
 ```
 
-### Só os scripts (sem plugin)
+### Scripts only (no plugin)
 
 ```bash
-python3 scripts/audit.py --root .                              # auditoria
-some-cmd 2>&1 | python3 scripts/compress_output.py --stats     # compressão
-python3 scripts/install_styles.py                             # instala os modos de saída
+python3 scripts/audit.py --root .                              # audit
+some-cmd 2>&1 | python3 scripts/compress_output.py --stats     # compression
+python3 scripts/install_styles.py                              # install output modes
 ```
 
 ---
 
-## As ferramentas
+## The tools
 
-### 1. Auditar e otimizar contexto (comprovado)
+### 1. Audit and optimize context (proven)
 
 ```
-/token-audit       # mede o piso de contexto e ranqueia o desperdício
-/token-optimize    # aplica os fixes seguros, mostrando cada diff
+/token-audit       # measures the context floor and ranks the waste
+/token-optimize    # applies the safe fixes, showing each diff
 ```
 
-O motor (`scripts/audit.py`) é **determinístico** — sem IA, sem rede. Reporta
-tamanho do CLAUDE.md, MCPs configurados e descrições de skills, com estimativas de
-~4 chars/token (rotuladas como estimativas, nunca números de marketing).
+The engine (`scripts/audit.py`) is **deterministic** — no AI, no network. It
+reports CLAUDE.md size, configured MCP servers, and skill descriptions, with
+~4-chars/token estimates (labelled as estimates, never marketing numbers).
 
-### 2. Modos de saída — incl. Caveman 🦴 (comprovado)
+### 2. Output modes — incl. Caveman 🦴 (proven)
 
-O jeito mais barato de cortar tokens de **saída** é mudar como o Claude escreve.
-Três modos, do mais radical ao profissional:
+The cheapest way to cut **output** tokens is changing how Claude writes.
+Three modes, from most radical to professional:
 
-| Modo | Voz | Uso |
+| Mode | Voice | Use |
 |---|---|---|
-| **Caveman** | "Fix function. Handle empty list. Done." | Máxima economia, informal |
-| **Telegraphic** | Inglês telegráfico, clipado mas gramatical | Meio-termo |
-| **Concise** | Profissional, sem enrolação | Trabalho sério |
+| **Caveman** | "Fix function. Handle empty list. Done." | Max savings, informal |
+| **Telegraphic** | Clipped but grammatical telegram English | Middle ground |
+| **Concise** | Professional, zero fluff | Serious work |
 
-**Em todos os modos, código, comandos, caminhos e números continuam exatos** — o
-estilo caveman vale só para a prosa, nunca para o que precisa estar correto.
+**In every mode, code, commands, paths, and numbers stay exact** — caveman
+style applies to prose only, never to anything that must be correct.
 
-Instalar e ativar:
+Install and activate:
 
 ```bash
-python3 scripts/install_styles.py     # copia os estilos p/ .claude/output-styles/
+python3 scripts/install_styles.py     # copies styles to .claude/output-styles/
 ```
 ```
-/output-style caveman      # ativa (ou telegraphic / concise)
-/output-style default      # volta ao normal
+/output-style caveman      # activate (or telegraphic / concise)
+/output-style default      # back to normal
 ```
 
-### 3. Modelo mínimo viável (comprovado)
+### 3. Minimum viable model (proven)
 
-A skill `minimum-viable-model` orienta o Claude a rodar trabalho braçal (scraping,
-formatação, resumo, extração) no modelo mais barato que resolve, reservando o
-modelo forte só para julgamento de verdade. O subagente `token-auditor` já roda
-em `haiku` — ele mesmo dá o exemplo.
+The `minimum-viable-model` skill guides Claude to run grunt work (scraping,
+formatting, summarizing, extraction) on the cheapest model that does the job,
+reserving the frontier model for genuine judgment. The `token-auditor`
+subagent already runs on `haiku` — it leads by example.
 
-### 4. Compressão de output (comprovado)
+### 4. Output compression (proven)
 
 ```bash
 npm test 2>&1 | python3 scripts/compress_output.py --stats
 # [alltoken] 3120 → 84 lines, ~94% fewer chars
 ```
 
-Regras determinísticas: colapsa duplicatas, remove boilerplate (barras de
-download, avisos de funding, ANSI), trunca pelo meio, e **sempre** preserva
-linhas de erro/warning. É lossy — pra logs que você só passaria o olho.
-Economia depende do quão barulhento é o input (build limpo ≈ nada; log gigante ≈ 80–95%).
+Deterministic rules: collapses duplicates, strips boilerplate (download bars,
+funding notices, ANSI codes), middle-truncates, and **always** preserves
+error/warning lines. It's lossy — for logs you'd only skim. Savings depend on
+how noisy the input is (clean build ≈ nothing; huge log ≈ 80–95%).
 
-### 5. Medir a realidade: `/token-usage` (comprovado)
+### 5. Measure reality: `/token-usage` (proven)
 
-Inspirado no [ccusage](https://github.com/ryoppippi/ccusage) (~16k ⭐): lê os
-logs locais do próprio Claude Code (`~/.claude/projects`, nada sai da máquina)
-e mostra **onde seus tokens realmente foram** — por modelo, share de output,
-taxa de cache — e transforma isso em ação (qual técnica do toolbox atacar
-primeiro). Sem dependências. Para relatórios de custo completos, use o ccusage.
+Inspired by [ccusage](https://github.com/ryoppippi/ccusage) (~16k ⭐): reads
+Claude Code's own local logs (`~/.claude/projects`, nothing leaves your
+machine) and shows **where your tokens actually went** — by model, output
+share, cache-read ratio — then maps each signal to the toolbox technique that
+fixes it. Zero dependencies. For full cost reports, use ccusage itself.
 
-### 6. Radar do ecossistema
+### 6. Ecosystem radar
 
-Analisamos as libs de Claude Code mais estreladas do GitHub e mapeamos em
-[`docs/ecosystem.md`](docs/ecosystem.md): o que **absorvemos** (reimplementado,
-sem dependências), o que **recomendamos como companheiro** ([Serena](https://github.com/oraios/serena)
-~19k ⭐ para leitura semântica por símbolos, ccusage para custos,
-[claude-code-router](https://github.com/musistudio/claude-code-router) para troca
-de engine) e o que decidimos **não** absorver — frameworks pesados pagam
-aluguel de contexto em toda sessão. O critério: a técnica precisa economizar
-mais do que custa estar instalada.
+We analyzed the most-starred Claude Code projects on GitHub and mapped them in
+[`docs/ecosystem.md`](docs/ecosystem.md): what we **absorbed** (re-implemented,
+dependency-free), what we **recommend as companions**
+([Serena](https://github.com/oraios/serena) ~19k ⭐ for symbol-level semantic
+reads, ccusage for costs,
+[claude-code-router](https://github.com/musistudio/claude-code-router) for
+engine swapping) and what we deliberately did **not** absorb — heavy frameworks
+pay context rent on every session. The bar: a technique must save more than it
+costs to have installed.
 
-### 7. Experimental — opt-in, com tradeoffs ⚠️
+### 7. Experimental — opt-in, with tradeoffs ⚠️
 
-Incluídas para completude, **nunca aplicadas automaticamente**:
+Included for completeness, **never applied automatically**:
 
-- **Texto-como-imagem** (`scripts/text_to_image.py`) — renderiza texto como PNG.
-  Lossy (OCR erra), economia não garantida, **nunca** para código. Requer Pillow.
-- **Troca de engine** (`docs/engine-swap.md`) — apontar o Claude Code para GLM/
-  DeepSeek via variáveis de ambiente. Troca qualidade e (DeepSeek) privacidade.
+- **Text-as-image** (`scripts/text_to_image.py`) — renders text as a PNG.
+  Lossy (OCR misreads), savings not guaranteed, **never** for code. Needs Pillow.
+- **Engine swap** (`docs/engine-swap.md`) — pointing Claude Code at GLM/
+  DeepSeek via environment variables. Trades quality and (DeepSeek) privacy.
 
 ---
 
-## Estrutura
+## Structure
 
 ```
-.claude-plugin/{plugin,marketplace}.json   # manifesto + instalável como marketplace
+.claude-plugin/{plugin,marketplace}.json   # manifest + installable as a marketplace
 commands/
-  alltoken.md             # /alltoken — a mágica: aplica tudo num passo
-  tokens.md               # /tokens — índice de tudo
+  alltoken.md             # /alltoken — the magic: applies everything in one shot
+  tokens.md               # /tokens — index of everything
   token-audit.md          # /token-audit
   token-optimize.md       # /token-optimize
-  token-usage.md          # /token-usage — analytics dos logs locais
-agents/token-auditor.md   # subagente de revisão (haiku)
+  token-usage.md          # /token-usage — local log analytics
+agents/token-auditor.md   # review subagent (haiku)
 skills/minimum-viable-model/SKILL.md
 output-styles/            # caveman.md · telegraphic.md · concise.md
-hooks/hooks.json          # SessionStart nudge (1 linha, só se houver desperdício alto)
+hooks/hooks.json          # SessionStart nudge (1 line, only when waste is high)
 scripts/
-  apply_all.py            # motor do /alltoken (one-shot, idempotente)
-  usage_stats.py          # analytics de uso (ccusage-inspired, sem deps)
-  audit.py                # motor de auditoria determinístico
-  compress_output.py      # compressor de output
-  install_styles.py       # instala os modos de saída
+  apply_all.py            # /alltoken engine (one-shot, idempotent)
+  usage_stats.py          # usage analytics (ccusage-inspired, no deps)
+  audit.py                # deterministic audit engine
+  compress_output.py      # output compressor
+  install_styles.py       # installs the output modes
   text_to_image.py        # experimental (opt-in)
-  session_start.py        # hook de aviso
+  session_start.py        # nudge hook
 docs/
-  official-best-practices.md  # guia oficial da Anthropic, destilado
-  ecosystem.md                # radar das libs top do ecossistema
+  official-best-practices.md  # Anthropic's official guidance, distilled
+  ecosystem.md                # radar of the ecosystem's top libraries
   engine-swap.md              # experimental (opt-in)
 ```
 
 ---
-
-## English
-
-**alltoken** is a single Claude Code plugin that aggregates the best
-token-saving techniques in one place: context auditing (`/token-audit`,
-`/token-optimize`), output modes that cut response tokens (**Caveman** —
-Claude speaks like a caveman — plus Telegraphic and Concise), minimum-viable-model
-routing (grunt work → Haiku), and deterministic output compression. **One command
-— `/alltoken` — applies everything to a project in a single shot**, including an
-idempotent CLAUDE.md block that enforces Anthropic's official best practices on
-every future session. Proven
-techniques are ready to use; gimmicky/risky ones (text-as-image, engine swapping)
-are bundled but opt-in with honest warnings, never applied silently. Code,
-commands, and numbers stay exact in every output mode. Install with
-`/plugin marketplace add fsmorua00/alltoken` then
-`/plugin install alltoken@alltoken-marketplace`, or run the scripts standalone.
-Token counts are ~4-chars/token estimates, never inflated marketing numbers.
 
 ## License
 

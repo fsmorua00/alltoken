@@ -1,31 +1,34 @@
 # tokenwise
 
-**Um plugin para o Claude Code que audita a lógica dos seus projetos e aplica
-otimizações de token de forma automática e segura** — do básico (forçar respostas
-concisas) ao avançado (higiene de contexto, roteamento por modelo mínimo viável,
-compressão de output).
+**Um único plugin para o Claude Code que agrega as melhores técnicas de economia
+de token num só lugar.** Nada de espalhar dez ferramentas soltas — aqui está tudo:
+auditoria de contexto, modos de saída (incluindo o **Caveman**, o Claude falando
+como neandertal pra cortar tokens), roteamento por modelo mínimo viável e
+compressão de output.
 
 > Filosofia: **ganho real com risco baixo, sem números de economia inflados.**
-> As técnicas comprovadas ficam ligadas por padrão. As experimentais/gimmicky
-> ficam documentadas como opt-in, com os avisos honestos que elas merecem.
+> As técnicas comprovadas ficam prontas para usar. As experimentais/gimmicky
+> ficam incluídas mas **opt-in**, com os avisos honestos que elas merecem — nunca
+> aplicadas por baixo dos panos.
 
 *(English summary at the bottom.)*
 
 ---
 
-## O que ele faz
+## A ideia
 
-`compute gasto ≈ tokens processados × modelo usado`. Toda otimização aqui mexe
-numa dessas duas variáveis. O plugin ataca as duas:
+`compute gasto ≈ tokens processados × modelo usado`. Toda técnica aqui mexe numa
+dessas duas variáveis — ou nos tokens de **entrada** (contexto), de **saída**
+(resposta), ou no **modelo**. O plugin ataca as três frentes:
 
-| Componente | O que faz | Custo/risco |
+| Frente | Ferramenta | Como |
 |---|---|---|
-| **`/token-audit`** | Roda uma análise **determinística** (sem IA) do "piso de contexto": tamanho do CLAUDE.md, MCPs configurados, descrições de skills — e soma um diagnóstico com julgamento (trabalho que devia ser script, uso do modelo forte pra tarefa braçal). | Nenhum |
-| **`/token-optimize`** | Aplica só as correções **seguras** (respostas concisas, enxugar CLAUDE.md, apertar descrições de skills), mostrando o diff antes de cada mudança. | Baixo, reversível via git |
-| **Agente `token-auditor`** | Subagente rodando em `haiku` que revisa a lógica do projeto focado só em desperdício de token. | Baixo |
-| **Skill `minimum-viable-model`** | Guia para escolher o modelo mais barato que resolve cada tarefa. | Nenhum |
-| **Hook SessionStart** | Injeta **uma linha** de aviso apenas se houver desperdício alto. Silencioso quando o projeto já está enxuto. | ~mínimo |
-| **`scripts/compress_output.py`** | Comprime output verboso de comandos (logs, install, testes) antes do Claude ler, com regras determinísticas. | Baixo (lossy por design) |
+| **Entrada / contexto** | `/token-audit`, `/token-optimize` | Mede o "piso de contexto" e enxuga CLAUDE.md, MCPs e skills |
+| **Saída / resposta** | Modos **Caveman · Telegraphic · Concise** | Trocam o estilo do Claude pra gastar menos palavras |
+| **Modelo / compute** | Skill `minimum-viable-model`, agente `token-auditor` | Manda trabalho braçal pro Haiku, reserva o modelo forte pro julgamento |
+| **Entrada / logs** | `scripts/compress_output.py` | Comprime output verboso de comandos antes do Claude ler |
+
+Veja o cardápio completo a qualquer momento com **`/tokenwise`**.
 
 ---
 
@@ -33,137 +36,124 @@ numa dessas duas variáveis. O plugin ataca as duas:
 
 ### Como plugin (recomendado)
 
-```bash
-# Adicione este repositório como marketplace
+```
 /plugin marketplace add fsmoura00/Claude
-
-# Instale o plugin
 /plugin install tokenwise@tokenwise-marketplace
 ```
 
-Depois disso os comandos `/token-audit` e `/token-optimize`, o agente e a skill
-ficam disponíveis em qualquer sessão.
-
 ### Só os scripts (sem plugin)
 
-Os scripts em `scripts/` funcionam soltos, sem nada instalado:
-
 ```bash
-python3 scripts/audit.py --root .            # auditoria legível
-python3 scripts/audit.py --root . --json     # saída pra automação
-some-noisy-command 2>&1 | python3 scripts/compress_output.py --stats
+python3 scripts/audit.py --root .                              # auditoria
+some-cmd 2>&1 | python3 scripts/compress_output.py --stats     # compressão
+python3 scripts/install_styles.py                             # instala os modos de saída
 ```
 
 ---
 
-## Uso
+## As ferramentas
 
-### Auditar
-
-```
-/token-audit
-```
-
-Exemplo do que o motor determinístico reporta:
+### 1. Auditar e otimizar contexto (comprovado)
 
 ```
-════════════════════════════════════════════════════════════════
-  tokenwise audit
-  project: /home/você/seu-projeto
-════════════════════════════════════════════════════════════════
-
-  Estimated context floor: ~6,420 tokens loaded before your first message.
-  Addressable waste (high+medium): ~3,900 tokens/session.
-
-  Findings (most impactful first):
-  🔴 [CLAUDE.md] (~2100 tok) CLAUDE.md is 480 lines / ~4600 tokens — over the
-       200-line guideline. This is re-injected context on every turn.
-       ↳ fix: Trim to a lean directory of project conventions...
-  🟡 [MCP] (~2100 tok) 3 MCP server(s) configured...
-  🔵 [output] No concise-output convention detected.
+/token-audit       # mede o piso de contexto e ranqueia o desperdício
+/token-optimize    # aplica os fixes seguros, mostrando cada diff
 ```
 
-### Otimizar
+O motor (`scripts/audit.py`) é **determinístico** — sem IA, sem rede. Reporta
+tamanho do CLAUDE.md, MCPs configurados e descrições de skills, com estimativas de
+~4 chars/token (rotuladas como estimativas, nunca números de marketing).
 
+### 2. Modos de saída — incl. Caveman 🦴 (comprovado)
+
+O jeito mais barato de cortar tokens de **saída** é mudar como o Claude escreve.
+Três modos, do mais radical ao profissional:
+
+| Modo | Voz | Uso |
+|---|---|---|
+| **Caveman** | "Fix function. Handle empty list. Done." | Máxima economia, informal |
+| **Telegraphic** | Inglês telegráfico, clipado mas gramatical | Meio-termo |
+| **Concise** | Profissional, sem enrolação | Trabalho sério |
+
+**Em todos os modos, código, comandos, caminhos e números continuam exatos** — o
+estilo caveman vale só para a prosa, nunca para o que precisa estar correto.
+
+Instalar e ativar:
+
+```bash
+python3 scripts/install_styles.py     # copia os estilos p/ .claude/output-styles/
 ```
-/token-optimize          # mostra cada diff e pede confirmação
-/token-optimize --yes    # aplica os fixes seguros sem perguntar
+```
+/output-style caveman      # ativa (ou telegraphic / concise)
+/output-style default      # volta ao normal
 ```
 
-Ele **nunca** apaga informação em silêncio — ao enxugar o CLAUDE.md, o conteúdo
-longo é movido para arquivos e o local é informado. Tudo fica no git, fácil de reverter.
+### 3. Modelo mínimo viável (comprovado)
 
-### Comprimir output pesado
+A skill `minimum-viable-model` orienta o Claude a rodar trabalho braçal (scraping,
+formatação, resumo, extração) no modelo mais barato que resolve, reservando o
+modelo forte só para julgamento de verdade. O subagente `token-auditor` já roda
+em `haiku` — ele mesmo dá o exemplo.
+
+### 4. Compressão de output (comprovado)
 
 ```bash
 npm test 2>&1 | python3 scripts/compress_output.py --stats
-# [tokenwise] 3120 → 84 lines, ~94% fewer chars (2900 collapsed, 136 trimmed)
+# [tokenwise] 3120 → 84 lines, ~94% fewer chars
 ```
 
-Regras determinísticas: colapsa linhas idênticas, remove boilerplate (barras de
-download, avisos de funding, códigos ANSI), trunca pelo meio preservando head+tail,
-e **sempre** mantém linhas que parecem erro/warning/falha.
+Regras determinísticas: colapsa duplicatas, remove boilerplate (barras de
+download, avisos de funding, ANSI), trunca pelo meio, e **sempre** preserva
+linhas de erro/warning. É lossy — pra logs que você só passaria o olho.
+Economia depende do quão barulhento é o input (build limpo ≈ nada; log gigante ≈ 80–95%).
 
-**Expectativa honesta:** a economia depende 100% de quão barulhento é o input.
-Build limpo economiza quase nada; log de install de 5.000 linhas encolhe 80–95%.
-É lossy — use para logs que você só passaria o olho, não para output que precisa ler palavra por palavra.
+### 5. Experimental — opt-in, com tradeoffs ⚠️
 
----
+Incluídas para completude, **nunca aplicadas automaticamente**:
 
-## O que é comprovado vs. experimental
-
-**Ligado por padrão (ganho real, risco baixo):**
-- Higiene de contexto (auditoria do piso, enxugar CLAUDE.md, revisar MCPs/skills)
-- Respostas concisas
-- Modelo mínimo viável (grunt work no modelo barato)
-- Compressão determinística de output
-
-**Deliberadamente NÃO incluído** (o vídeo que inspirou isto os promove, mas são
-gimmicky ou arriscados; documentados aqui só para transparência):
-- **Texto-como-imagem** para economizar tokens — OCR é lossy, tokens de imagem
-  não são garantidamente mais baratos, e pode ser "corrigido" a qualquer momento.
-- **Trocar o engine** para GLM/DeepSeek via variáveis de ambiente — funciona, mas
-  troca qualidade e (DeepSeek) levanta questões de privacidade. É decisão sua, não do plugin.
-- **Rodar modelo local** — impraticável para qualidade de ponta em hardware de consumidor hoje.
-
-Se você quiser explorar essas mesmo assim, a skill `minimum-viable-model` e a
-documentação te dão o contexto — mas o plugin não vai aplicá-las por baixo dos panos.
+- **Texto-como-imagem** (`scripts/text_to_image.py`) — renderiza texto como PNG.
+  Lossy (OCR erra), economia não garantida, **nunca** para código. Requer Pillow.
+- **Troca de engine** (`docs/engine-swap.md`) — apontar o Claude Code para GLM/
+  DeepSeek via variáveis de ambiente. Troca qualidade e (DeepSeek) privacidade.
 
 ---
 
 ## Estrutura
 
 ```
-.claude-plugin/
-  plugin.json          # manifesto do plugin
-  marketplace.json     # torna o repo instalável como marketplace
+.claude-plugin/{plugin,marketplace}.json   # manifesto + instalável como marketplace
 commands/
-  token-audit.md       # /token-audit
-  token-optimize.md    # /token-optimize
-agents/
-  token-auditor.md     # subagente de revisão (haiku)
-skills/
-  minimum-viable-model/SKILL.md
-hooks/
-  hooks.json           # SessionStart nudge
+  tokenwise.md            # /tokenwise — índice de tudo
+  token-audit.md          # /token-audit
+  token-optimize.md       # /token-optimize
+agents/token-auditor.md   # subagente de revisão (haiku)
+skills/minimum-viable-model/SKILL.md
+output-styles/            # caveman.md · telegraphic.md · concise.md
+hooks/hooks.json          # SessionStart nudge (1 linha, só se houver desperdício alto)
 scripts/
-  audit.py             # motor de auditoria determinístico (núcleo)
-  compress_output.py   # compressor de output
-  session_start.py     # hook de aviso de uma linha
+  audit.py                # motor de auditoria determinístico
+  compress_output.py      # compressor de output
+  install_styles.py       # instala os modos de saída
+  text_to_image.py        # experimental (opt-in)
+  session_start.py        # hook de aviso
+docs/engine-swap.md       # experimental (opt-in)
 ```
 
 ---
 
 ## English
 
-**tokenwise** is a Claude Code plugin that audits your project's logic for token
-waste and applies safe, automatic optimizations — from concise output to context
-hygiene and minimum-viable-model routing. Proven techniques are on by default;
-gimmicky/risky ones (text-as-image, engine swapping, local models) are documented
-but intentionally *not* applied for you. Install with
-`/plugin marketplace add fsmoura00/Claude` then `/plugin install tokenwise@tokenwise-marketplace`,
-or run the scripts standalone. Token counts are ~4-chars/token estimates, never
-inflated marketing numbers.
+**tokenwise** is a single Claude Code plugin that aggregates the best
+token-saving techniques in one place: context auditing (`/token-audit`,
+`/token-optimize`), output modes that cut response tokens (**Caveman** —
+Claude speaks like a caveman — plus Telegraphic and Concise), minimum-viable-model
+routing (grunt work → Haiku), and deterministic output compression. Proven
+techniques are ready to use; gimmicky/risky ones (text-as-image, engine swapping)
+are bundled but opt-in with honest warnings, never applied silently. Code,
+commands, and numbers stay exact in every output mode. Install with
+`/plugin marketplace add fsmoura00/Claude` then
+`/plugin install tokenwise@tokenwise-marketplace`, or run the scripts standalone.
+Token counts are ~4-chars/token estimates, never inflated marketing numbers.
 
 ## License
 

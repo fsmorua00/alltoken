@@ -1,7 +1,7 @@
 {
   "name": "tokenwise",
-  "version": "0.1.0",
-  "description": "Audits project logic for token waste and applies safe, automatic optimizations — from concise output to context hygiene and minimum-viable-model routing.",
+  "version": "0.2.0",
+  "description": "One toolbox aggregating the best Claude Code token-saving techniques: context auditing, output modes (Caveman/Telegraphic/Concise), minimum-viable-model routing, and output compression.",
   "author": {
     "name": "fsmoura00"
   },

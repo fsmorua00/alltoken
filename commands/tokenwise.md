@@ -1,0 +1,36 @@
+---
+description: Show the tokenwise toolbox — every token-saving tool in this plugin and how to use it.
+allowed-tools: Bash(python3:*), Read
+---
+
+Present the **tokenwise toolbox** to the user: a single plugin aggregating the
+best Claude Code token-saving techniques. Keep it short and scannable.
+
+If helpful, run `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/audit.py" --root . ` to
+show the current project's context floor alongside the menu.
+
+Show this menu (adapt to what the user asks):
+
+## tokenwise toolbox
+
+**Audit & optimize (proven, safe)**
+- `/token-audit` — measure the context floor and rank token waste.
+- `/token-optimize` — apply the safe fixes (concise output, trim CLAUDE.md, tighten skills).
+
+**Output modes (cut OUTPUT tokens)** — install then activate:
+- `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/install_styles.py` then `/output-style caveman`
+- Styles: **Caveman** (grunt-terse), **Telegraphic** (clipped), **Concise** (professional).
+- Reset anytime with `/output-style default`. Code/commands stay exact in every mode.
+
+**Model routing (cut COMPUTE)**
+- Skill `minimum-viable-model` — route grunt work to Haiku, keep frontier for judgment.
+- Subagent `token-auditor` — reviews project logic for waste (runs on Haiku).
+
+**Input compression**
+- `some-noisy-cmd 2>&1 | python3 ${CLAUDE_PLUGIN_ROOT}/scripts/compress_output.py --stats`
+
+**Experimental (opt-in, tradeoffs — read the docs first)**
+- Text-as-image: `scripts/text_to_image.py` (lossy; never for code).
+- Engine swap to other providers: `docs/engine-swap.md`.
+
+End by asking which one the user wants to run or set up. Be concise.

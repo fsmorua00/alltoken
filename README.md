@@ -65,7 +65,7 @@ em [`docs/official-best-practices.md`](docs/official-best-practices.md).
 ### Como plugin (recomendado)
 
 ```
-/plugin marketplace add fsmoura00/Claude
+/plugin marketplace add fsmorua00/Claude
 /plugin install tokenwise@tokenwise-marketplace
 ```
 
@@ -186,7 +186,7 @@ every future session. Proven
 techniques are ready to use; gimmicky/risky ones (text-as-image, engine swapping)
 are bundled but opt-in with honest warnings, never applied silently. Code,
 commands, and numbers stay exact in every output mode. Install with
-`/plugin marketplace add fsmoura00/Claude` then
+`/plugin marketplace add fsmorua00/Claude` then
 `/plugin install tokenwise@tokenwise-marketplace`, or run the scripts standalone.
 Token counts are ~4-chars/token estimates, never inflated marketing numbers.
 

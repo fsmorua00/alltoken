@@ -1,7 +1,7 @@
 ---
 description: Apply the safe, high-confidence token optimizations to this project (with confirmation before each change).
 argument-hint: "[--yes]"
-allowed-tools: Bash(python3:*), Read, Edit, Write, Glob, Grep
+allowed-tools: Bash(python3:*), Bash(python:*), Read, Edit, Write, Glob, Grep
 ---
 
 You are running **alltoken optimize**. Goal: actually apply the safe wins the
@@ -42,6 +42,7 @@ audit surfaces. Every change must be reversible via git and shown to the user.
 
 ## Rules
 
+- If `python3` is not found (common on native Windows), run the same command with `python` instead — the scripts are pure stdlib and OS-independent.
 - Show every change as a diff before writing. Batch related edits.
 - Never fabricate savings numbers.
 - After applying, print a short summary: what changed, and re-run the audit to

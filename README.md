@@ -78,6 +78,14 @@ some-cmd 2>&1 | python3 scripts/compress_output.py --stats     # compression
 python3 scripts/install_styles.py                              # install output modes
 ```
 
+### Requirements
+
+- **Claude Code** on any surface — terminal CLI, desktop app (Mac/Windows),
+  or the VS Code/JetBrains extension. Slash commands work the same everywhere.
+- **Python 3.8+** (standard library only, zero dependencies). On native
+  Windows, Python is usually invoked as `python` instead of `python3` — the
+  commands fall back automatically, and everything also works under WSL.
+
 ---
 
 ## The tools

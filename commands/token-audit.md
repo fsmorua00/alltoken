@@ -1,7 +1,7 @@
 ---
 description: Audit this project for token waste (context floor, CLAUDE.md, MCPs, skills) and report a ranked, actionable plan.
 argument-hint: "[--include-user]"
-allowed-tools: Bash(python3:*), Read, Glob, Grep
+allowed-tools: Bash(python3:*), Bash(python:*), Read, Glob, Grep
 ---
 
 You are running the **alltoken audit**. Goal: find where this project silently
@@ -39,6 +39,7 @@ changing anything.
 
 ## Rules
 
+- If `python3` is not found (common on native Windows), run the same command with `python` instead — the scripts are pure stdlib and OS-independent.
 - Be concise. This is a token-optimization tool; don't be hypocritical.
 - Never invent savings percentages. Use the script's estimates and label them
   as estimates.

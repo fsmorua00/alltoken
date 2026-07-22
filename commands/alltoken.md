@@ -1,7 +1,7 @@
 ---
 description: One-shot magic — apply ALL proven token-saving techniques + official Claude Code best practices to this project at once.
 argument-hint: "[caveman|telegraphic|concise] [--shared] [--yes]"
-allowed-tools: Bash(python3:*), Read, Edit, Write, Glob, Grep
+allowed-tools: Bash(python3:*), Bash(python:*), Read, Edit, Write, Glob, Grep
 ---
 
 You are running **/alltoken** — alltoken's one-shot setup. Goal: in a single
@@ -64,6 +64,7 @@ block of Anthropic's official best practices that every future session loads.
 
 ## Rules
 
+- If `python3` is not found (common on native Windows), run the same command with `python` instead — the scripts are pure stdlib and OS-independent.
 - Be concise — this is a token-saving tool.
 - Never invent savings numbers; quote the engine's estimates, labelled as estimates.
 - Mechanical steps are automatic; anything touching user-authored content shows

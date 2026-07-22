@@ -1,6 +1,6 @@
 ---
 description: Show the alltoken toolbox — every token-saving tool in this plugin and how to use it.
-allowed-tools: Bash(python3:*), Read
+allowed-tools: Bash(python3:*), Bash(python:*), Read
 ---
 
 Present the **alltoken toolbox** to the user: a single plugin aggregating the
@@ -45,3 +45,5 @@ Show this menu (adapt to what the user asks):
 - Engine swap to other providers: `docs/engine-swap.md`.
 
 End by asking which one the user wants to run or set up. Be concise.
+
+Note: if `python3` is missing (common on native Windows), use `python` instead.

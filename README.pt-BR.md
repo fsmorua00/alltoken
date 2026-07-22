@@ -77,6 +77,15 @@ some-cmd 2>&1 | python3 scripts/compress_output.py --stats     # compressão
 python3 scripts/install_styles.py                              # instala os modos de saída
 ```
 
+### Requisitos
+
+- **Claude Code** em qualquer superfície — CLI no terminal, app desktop
+  (Mac/Windows) ou extensão do VS Code/JetBrains. Os comandos `/` funcionam
+  igual em todas.
+- **Python 3.8+** (só biblioteca padrão, zero dependências). No Windows nativo
+  o Python geralmente se chama `python` em vez de `python3` — os comandos fazem
+  o fallback automaticamente, e tudo também funciona via WSL.
+
 ---
 
 ## As ferramentas

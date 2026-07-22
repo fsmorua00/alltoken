@@ -1,7 +1,7 @@
 ---
 description: Analyze your real Claude Code token usage from local logs — by model, by day, cache ratio — and turn it into optimization actions.
 argument-hint: "[--days N]"
-allowed-tools: Bash(python3:*), Read
+allowed-tools: Bash(python3:*), Bash(python:*), Read
 ---
 
 You are running **/token-usage** — alltoken's local usage analytics (ccusage-
@@ -31,5 +31,6 @@ inspired, dependency-free, nothing leaves the machine).
 
 ## Rules
 
+- If `python3` is not found (common on native Windows), run the same command with `python` instead — the scripts are pure stdlib and OS-independent.
 - Be concise. No invented numbers — only what the script reports.
 - If the script finds no logs, say so and stop; don't guess usage.

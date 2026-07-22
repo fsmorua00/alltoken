@@ -37,6 +37,9 @@ Show this menu (adapt to what the user asks):
 **Measure reality**
 - `/token-usage` — where your tokens actually went (last 30 days, local logs,
   by model / output share / cache ratio).
+- `/token-progress` — before/after proof vs the baseline `/alltoken` saved,
+  from your own logs. Optional opt-in sharing to the community benchmark
+  (`docs/telemetry.md`).
 - Ecosystem radar: `docs/ecosystem.md` — the top-starred tools analyzed, what we
   absorbed and what to install as companions (Serena, ccusage, router).
 

@@ -153,7 +153,24 @@ e mostra **onde seus tokens realmente foram** — por modelo, share de output,
 taxa de cache — e transforma isso em ação (qual técnica do toolbox atacar
 primeiro). Sem dependências. Para relatórios de custo completos, use o ccusage.
 
-### 6. Radar do ecossistema
+### 6. Provar: `/token-progress` + benchmark comunitário
+
+Todo mundo nesse nicho *promete* economia. O alltoken **mede na sua própria
+máquina**: o `/alltoken` grava uma baseline do seu uso real; dias depois, o
+`/token-progress` mostra o antes vs depois — tokens/mensagem, share de output,
+taxa de cache, share de modelo frontier — com as ressalvas honestas (sua carga
+de trabalho também muda; é dado real, não experimento controlado).
+
+Opcionalmente — **estritamente opt-in** — dá pra compartilhar esses agregados
+com o benchmark comunitário: `scripts/share_stats.py` mostra o payload exato e
+só envia com confirmação explícita. Cinco números por lado, um UUID aleatório,
+mais nada — nunca código, prompts, caminhos ou hostnames. O servidor está neste
+repo ([`server/`](server/)), stdlib puro, auto-hospedável em qualquer VPS Linux,
+e o `/v1/stats` público mostra medianas rotuladas como dado auto-reportado.
+Política completa: [`docs/telemetry.md`](docs/telemetry.md). **O padrão continua
+sendo zero rede.**
+
+### 7. Radar do ecossistema
 
 Analisamos as libs de Claude Code mais estreladas do GitHub e mapeamos em
 [`docs/ecosystem.md`](docs/ecosystem.md): o que **absorvemos** (reimplementado,
@@ -165,7 +182,7 @@ troca de engine) e o que decidimos **não** absorver — frameworks pesados paga
 aluguel de contexto em toda sessão. O critério: a técnica precisa economizar
 mais do que custa estar instalada.
 
-### 7. Experimental — opt-in, com tradeoffs ⚠️
+### 8. Experimental — opt-in, com tradeoffs ⚠️
 
 Incluídas para completude, **nunca aplicadas automaticamente**:
 
@@ -186,6 +203,7 @@ commands/
   token-audit.md          # /token-audit
   token-optimize.md       # /token-optimize
   token-usage.md          # /token-usage — analytics dos logs locais
+  token-progress.md       # /token-progress — prova do antes/depois
 agents/token-auditor.md   # subagente de revisão (haiku)
 skills/minimum-viable-model/SKILL.md
 output-styles/            # caveman.md · telegraphic.md · concise.md
@@ -193,6 +211,8 @@ hooks/hooks.json          # SessionStart nudge (1 linha, só se houver desperdí
 scripts/
   apply_all.py            # motor do /alltoken (one-shot, idempotente)
   usage_stats.py          # analytics de uso (ccusage-inspired, sem deps)
+  progress.py             # baseline + prova do antes/depois
+  share_stats.py          # envio opt-in ao benchmark (mostra o payload antes)
   audit.py                # motor de auditoria determinístico
   compress_output.py      # compressor de output
   install_styles.py       # instala os modos de saída
@@ -201,7 +221,9 @@ scripts/
 docs/
   official-best-practices.md  # guia oficial da Anthropic, destilado
   ecosystem.md                # radar das libs top do ecossistema
+  telemetry.md                # zero por padrão; política de agregados opt-in
   engine-swap.md              # experimental (opt-in)
+server/                       # servidor do benchmark comunitário (stdlib, auto-hospedável)
 ```
 
 ---

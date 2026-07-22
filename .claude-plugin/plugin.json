@@ -1,7 +1,7 @@
 {
   "name": "alltoken",
-  "version": "0.5.0",
-  "description": "One command (/alltoken) applies every proven Claude Code token-saving technique at once: context auditing, output modes (Caveman/Telegraphic/Concise), official best-practice enforcement via CLAUDE.md, minimum-viable-model routing, local usage analytics, and output compression.",
+  "version": "0.6.0",
+  "description": "One command (/alltoken) applies every proven Claude Code token-saving technique at once — then PROVES the savings with your own data (/token-progress): context auditing, output modes (Caveman/Telegraphic/Concise), official best-practice enforcement, model routing, usage analytics, output compression.",
   "author": {
     "name": "fsmorua00"
   },

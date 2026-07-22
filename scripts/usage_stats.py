@@ -66,8 +66,34 @@ def iter_usage_entries(projects_dir: Path):
             continue
 
 
-def collect(projects_dir: Path, days: int) -> dict:
+def munge_project_path(root: Path) -> str:
+    """Claude Code names each project's log dir by munging its absolute path."""
+    return "".join(c if c.isalnum() else "-" for c in str(root))
+
+
+def find_project_dir(projects_dir: Path, root: Path) -> Path | None:
+    """Locate the per-project log dir for `root`, tolerating munging variants."""
+    want = munge_project_path(root.resolve())
+    exact = projects_dir / want
+    if exact.is_dir():
+        return exact
+    for d in projects_dir.iterdir():
+        if d.is_dir() and d.name.lower() == want.lower():
+            return d
+    return None
+
+
+def collect(
+    projects_dir: Path,
+    days: int,
+    since: str = "",
+    until: str = "",
+) -> dict:
+    """Aggregate usage. `since`/`until` are inclusive ISO dates (YYYY-MM-DD)
+    that override/augment the rolling `days` window when provided."""
     cutoff = (date.today() - timedelta(days=days)).isoformat() if days > 0 else ""
+    if since:
+        cutoff = max(cutoff, since) if cutoff else since
 
     # Streaming writes repeat the same message id with cumulative usage;
     # keep the LAST occurrence per id (matches how the final chunk reports).
@@ -75,6 +101,8 @@ def collect(projects_dir: Path, days: int) -> dict:
     anon: list[tuple[str, str, dict]] = []
     for msg_id, model, day, usage in iter_usage_entries(projects_dir):
         if cutoff and day != "unknown" and day < cutoff:
+            continue
+        if until and day != "unknown" and day > until:
             continue
         if msg_id:
             latest[msg_id] = (model, day, usage)
@@ -172,6 +200,9 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description="alltoken local usage analytics")
     ap.add_argument("--dir", default=None, help="projects dir (default: ~/.claude/projects)")
     ap.add_argument("--days", type=int, default=30, help="window in days (default 30; 0 = all)")
+    ap.add_argument("--project", default=None, help="only this project's logs (pass its path)")
+    ap.add_argument("--since", default="", help="inclusive start date YYYY-MM-DD")
+    ap.add_argument("--until", default="", help="inclusive end date YYYY-MM-DD")
     ap.add_argument("--json", action="store_true", help="machine-readable output")
     args = ap.parse_args(argv)
 
@@ -180,7 +211,14 @@ def main(argv: list[str] | None = None) -> int:
         print(f"error: {projects_dir} not found — is this machine running Claude Code?", file=sys.stderr)
         return 2
 
-    data = collect(projects_dir, args.days)
+    if args.project:
+        sub = find_project_dir(projects_dir, Path(args.project))
+        if sub is None:
+            print(f"error: no logs found for project {args.project}", file=sys.stderr)
+            return 2
+        projects_dir = sub
+
+    data = collect(projects_dir, args.days, since=args.since, until=args.until)
     if args.json:
         print(json.dumps(data, indent=2))
     else:

@@ -1,0 +1,19 @@
+[Unit]
+Description=alltoken community benchmark server
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Environment=ALLTOKEN_DB=/var/lib/alltoken/alltoken.db
+Environment=PORT=8080
+Environment=BIND=127.0.0.1
+ExecStart=/usr/bin/python3 /home/www-data/alltoken-server/server.py
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/alltoken
+
+[Install]
+WantedBy=multi-user.target

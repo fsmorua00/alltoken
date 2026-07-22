@@ -152,7 +152,23 @@ machine) and shows **where your tokens actually went** — by model, output
 share, cache-read ratio — then maps each signal to the toolbox technique that
 fixes it. Zero dependencies. For full cost reports, use ccusage itself.
 
-### 6. Ecosystem radar
+### 6. Prove it: `/token-progress` + community benchmark
+
+Everyone in this niche *claims* savings. alltoken **measures them on your own
+data**: `/alltoken` snapshots a baseline of your real usage; days later,
+`/token-progress` shows before vs after — tokens/message, output share,
+cache-read share, frontier share — with honest caveats (your workload changes
+too; this is real data, not a controlled experiment).
+
+Optionally — **strictly opt-in** — share those aggregates with the community
+benchmark: `scripts/share_stats.py` prints the exact payload and only sends
+with explicit confirmation. Five numbers per side, a random UUID, nothing else
+— no code, prompts, paths, or hostnames, ever. The server is in this repo
+([`server/`](server/)), stdlib-only, self-hostable on any Linux VPS, and its
+public `/v1/stats` shows medians labelled as self-reported data. Full policy:
+[`docs/telemetry.md`](docs/telemetry.md). **Default remains zero network.**
+
+### 7. Ecosystem radar
 
 We analyzed the most-starred Claude Code projects on GitHub and mapped them in
 [`docs/ecosystem.md`](docs/ecosystem.md): what we **absorbed** (re-implemented,
@@ -164,7 +180,7 @@ engine swapping) and what we deliberately did **not** absorb — heavy framework
 pay context rent on every session. The bar: a technique must save more than it
 costs to have installed.
 
-### 7. Experimental — opt-in, with tradeoffs ⚠️
+### 8. Experimental — opt-in, with tradeoffs ⚠️
 
 Included for completeness, **never applied automatically**:
 
@@ -185,6 +201,7 @@ commands/
   token-audit.md          # /token-audit
   token-optimize.md       # /token-optimize
   token-usage.md          # /token-usage — local log analytics
+  token-progress.md       # /token-progress — before/after proof
 agents/token-auditor.md   # review subagent (haiku)
 skills/minimum-viable-model/SKILL.md
 output-styles/            # caveman.md · telegraphic.md · concise.md
@@ -192,6 +209,8 @@ hooks/hooks.json          # SessionStart nudge (1 line, only when waste is high)
 scripts/
   apply_all.py            # /alltoken engine (one-shot, idempotent)
   usage_stats.py          # usage analytics (ccusage-inspired, no deps)
+  progress.py             # baseline + before/after proof
+  share_stats.py          # opt-in benchmark sharing (shows payload first)
   audit.py                # deterministic audit engine
   compress_output.py      # output compressor
   install_styles.py       # installs the output modes
@@ -200,7 +219,9 @@ scripts/
 docs/
   official-best-practices.md  # Anthropic's official guidance, distilled
   ecosystem.md                # radar of the ecosystem's top libraries
+  telemetry.md                # zero by default; opt-in aggregates policy
   engine-swap.md              # experimental (opt-in)
+server/                       # community benchmark server (stdlib, self-hostable)
 ```
 
 ---

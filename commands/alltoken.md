@@ -46,10 +46,13 @@ block of Anthropic's official best practices that every future session loads.
 
    ```
    python3 "${CLAUDE_PLUGIN_ROOT}/scripts/usage_stats.py" --days 30
+   python3 "${CLAUDE_PLUGIN_ROOT}/scripts/progress.py" save --root . --if-missing
    ```
 
-   and fold its top signal (model mix / output share / cache ratio) into the
-   report. If it finds no logs, skip silently.
+   The first folds its top signal (model mix / output share / cache ratio)
+   into the report; the second snapshots a BASELINE so `/token-progress` can
+   later prove the savings with the user's own data. If no logs, skip both
+   silently.
 
 5. Final report, short:
    - context floor before → after

@@ -135,7 +135,26 @@ download, avisos de funding, ANSI), trunca pelo meio, e **sempre** preserva
 linhas de erro/warning. É lossy — pra logs que você só passaria o olho.
 Economia depende do quão barulhento é o input (build limpo ≈ nada; log gigante ≈ 80–95%).
 
-### 5. Experimental — opt-in, com tradeoffs ⚠️
+### 5. Medir a realidade: `/token-usage` (comprovado)
+
+Inspirado no [ccusage](https://github.com/ryoppippi/ccusage) (~16k ⭐): lê os
+logs locais do próprio Claude Code (`~/.claude/projects`, nada sai da máquina)
+e mostra **onde seus tokens realmente foram** — por modelo, share de output,
+taxa de cache — e transforma isso em ação (qual técnica do toolbox atacar
+primeiro). Sem dependências. Para relatórios de custo completos, use o ccusage.
+
+### 6. Radar do ecossistema
+
+Analisamos as libs de Claude Code mais estreladas do GitHub e mapeamos em
+[`docs/ecosystem.md`](docs/ecosystem.md): o que **absorvemos** (reimplementado,
+sem dependências), o que **recomendamos como companheiro** ([Serena](https://github.com/oraios/serena)
+~19k ⭐ para leitura semântica por símbolos, ccusage para custos,
+[claude-code-router](https://github.com/musistudio/claude-code-router) para troca
+de engine) e o que decidimos **não** absorver — frameworks pesados pagam
+aluguel de contexto em toda sessão. O critério: a técnica precisa economizar
+mais do que custa estar instalada.
+
+### 7. Experimental — opt-in, com tradeoffs ⚠️
 
 Incluídas para completude, **nunca aplicadas automaticamente**:
 
@@ -155,12 +174,14 @@ commands/
   tokenwise.md            # /tokenwise — índice de tudo
   token-audit.md          # /token-audit
   token-optimize.md       # /token-optimize
+  token-usage.md          # /token-usage — analytics dos logs locais
 agents/token-auditor.md   # subagente de revisão (haiku)
 skills/minimum-viable-model/SKILL.md
 output-styles/            # caveman.md · telegraphic.md · concise.md
 hooks/hooks.json          # SessionStart nudge (1 linha, só se houver desperdício alto)
 scripts/
   apply_all.py            # motor do /alltoken (one-shot, idempotente)
+  usage_stats.py          # analytics de uso (ccusage-inspired, sem deps)
   audit.py                # motor de auditoria determinístico
   compress_output.py      # compressor de output
   install_styles.py       # instala os modos de saída
@@ -168,6 +189,7 @@ scripts/
   session_start.py        # hook de aviso
 docs/
   official-best-practices.md  # guia oficial da Anthropic, destilado
+  ecosystem.md                # radar das libs top do ecossistema
   engine-swap.md              # experimental (opt-in)
 ```
 

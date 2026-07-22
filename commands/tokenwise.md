@@ -34,6 +34,12 @@ Show this menu (adapt to what the user asks):
 **Input compression**
 - `some-noisy-cmd 2>&1 | python3 ${CLAUDE_PLUGIN_ROOT}/scripts/compress_output.py --stats`
 
+**Measure reality**
+- `/token-usage` — where your tokens actually went (last 30 days, local logs,
+  by model / output share / cache ratio).
+- Ecosystem radar: `docs/ecosystem.md` — the top-starred tools analyzed, what we
+  absorbed and what to install as companions (Serena, ccusage, router).
+
 **Experimental (opt-in, tradeoffs — read the docs first)**
 - Text-as-image: `scripts/text_to_image.py` (lossy; never for code).
 - Engine swap to other providers: `docs/engine-swap.md`.

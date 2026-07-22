@@ -42,12 +42,25 @@ block of Anthropic's official best practices that every future session loads.
    b. List the engine's "needs your call" items verbatim (e.g. disconnecting
       MCP servers) — do NOT act on them.
 
-4. Final report, short:
+4. Measure reality: if `~/.claude/projects` exists, also run
+
+   ```
+   python3 "${CLAUDE_PLUGIN_ROOT}/scripts/usage_stats.py" --days 30
+   ```
+
+   and fold its top signal (model mix / output share / cache ratio) into the
+   report. If it finds no logs, skip silently.
+
+5. Final report, short:
    - context floor before → after
    - active output style and how to revert (`/output-style default`)
    - note that the CLAUDE.md block now enforces the official best practices on
      every session in this project
    - all file changes are visible in `git diff`
+   - close with at most TWO ecosystem recommendations from
+     `${CLAUDE_PLUGIN_ROOT}/docs/ecosystem.md`, picked for THIS project
+     (e.g. Serena for large codebases; ccusage for full cost reports) — one
+     line each, links included.
 
 ## Rules
 

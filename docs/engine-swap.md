@@ -34,6 +34,12 @@ Providers people commonly evaluate for cost-per-dollar include **Z.ai's GLM**
 plans and **DeepSeek** plans. Treat any capacity claims skeptically and measure
 on your own workload.
 
+In practice, the most popular implementation of this idea is
+[claude-code-router](https://github.com/musistudio/claude-code-router) — a local
+gateway that gives Claude Code one stable endpoint and handles provider/model
+routing rules for you. If you go down this road, use it rather than hand-rolling
+environment variables; the caveats above still apply in full.
+
 ## The tokenwise recommendation
 
 Prefer the **minimum-viable-model** approach *inside* the Anthropic ecosystem

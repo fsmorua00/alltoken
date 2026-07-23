@@ -60,8 +60,12 @@ def iter_usage_entries(projects_dir: Path):
                         continue
                     ts = str(entry.get("timestamp") or "")
                     day = ts[:10] if len(ts) >= 10 else "unknown"
+                    try:
+                        hour = int(ts[11:13])  # UTC hour from ISO timestamp
+                    except (ValueError, IndexError):
+                        hour = -1
                     msg_id = msg.get("id")
-                    yield msg_id, model, day, usage
+                    yield msg_id, model, day, hour, usage
         except OSError:
             continue
 
@@ -97,29 +101,34 @@ def collect(
 
     # Streaming writes repeat the same message id with cumulative usage;
     # keep the LAST occurrence per id (matches how the final chunk reports).
-    latest: dict[str, tuple[str, str, dict]] = {}
-    anon: list[tuple[str, str, dict]] = []
-    for msg_id, model, day, usage in iter_usage_entries(projects_dir):
+    latest: dict[str, tuple[str, str, int, dict]] = {}
+    anon: list[tuple[str, str, int, dict]] = []
+    for msg_id, model, day, hour, usage in iter_usage_entries(projects_dir):
         if cutoff and day != "unknown" and day < cutoff:
             continue
         if until and day != "unknown" and day > until:
             continue
         if msg_id:
-            latest[msg_id] = (model, day, usage)
+            latest[msg_id] = (model, day, hour, usage)
         else:
-            anon.append((model, day, usage))
+            anon.append((model, day, hour, usage))
 
     per_model: dict[str, dict] = defaultdict(
         lambda: {"input": 0, "output": 0, "cache_create": 0, "cache_read": 0, "messages": 0}
     )
     per_day: dict[str, dict] = defaultdict(lambda: {"input": 0, "output": 0})
-    totals = {"input": 0, "output": 0, "cache_create": 0, "cache_read": 0, "messages": 0}
+    totals = {"input": 0, "output": 0, "cache_create": 0, "cache_read": 0,
+              "messages": 0, "peak_tokens": 0}
 
-    for model, day, usage in list(latest.values()) + anon:
+    for model, day, hour, usage in list(latest.values()) + anon:
         i = int(usage.get("input_tokens") or 0)
         o = int(usage.get("output_tokens") or 0)
         cc = int(usage.get("cache_creation_input_tokens") or 0)
         cr = int(usage.get("cache_read_input_tokens") or 0)
+        # Anthropic's demand-based drain window ≈ 8am–2pm ET ≈ 13–19 UTC
+        # (approximate: ignores DST edges and the user's own timezone).
+        if 13 <= hour < 19:
+            totals["peak_tokens"] += i + o + cc + cr
         m = per_model[model]
         m["input"] += i
         m["output"] += o
@@ -196,6 +205,13 @@ def render(data: dict, projects_dir: Path, days: int) -> str:
             "      A STABLE large prefix is cheaper than an UNSTABLE small one: don't edit\n"
             "      CLAUDE.md or toggle MCPs/styles mid-session — batch config changes between sessions."
         )
+    peak_share = (100 * t.get("peak_tokens", 0) / grand) if grand else 0
+    out.append(
+        f"    • peak-window share (~8am–2pm ET, approx): {peak_share:.0f}% of your tokens.\n"
+        "      Anthropic drains subscription capacity faster at peak demand and has offered\n"
+        "      off-peak incentives — shift loops/batch runs off-peak when you can\n"
+        "      (verify current terms; window estimate ignores DST/timezone edges)."
+    )
     if out_share > 20:
         out.append("    • output share is HIGH → a concise output style pays off (/alltoken caveman).")
     frontier_heavy = ranked and ("haiku" not in ranked[0][0].lower()) and len(ranked) >= 1

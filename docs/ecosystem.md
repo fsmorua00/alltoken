@@ -23,6 +23,39 @@ your tokens. Star counts are approximate as of July 2026 — check the repos.
 | [claude-code-router](https://github.com/musistudio/claude-code-router) | large | Local gateway that routes requests across providers/models — the concrete implementation of our `docs/engine-swap.md` | Only after in-ecosystem MVM routing isn't enough; same quality/privacy caveats |
 | [awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code) | large | Curated discovery hub for the whole ecosystem | Finding anything not covered here |
 
+## Fresh radar (last ~3 months, surveyed July 2026)
+
+The token-saving niche is exploding. Newest notable entrants:
+
+- **[rtk](https://github.com/rtk-ai/rtk)** (~72k ⭐, Jan 2026) — Rust proxy
+  compressing dev-command output 60–90%. The category gorilla; our
+  `compress_output.py` is the minimal stdlib take on the same idea. Notably,
+  [JetBrains benchmarked rtk](https://blog.jetbrains.com/ai/2026/07/rtk-claude-code-token-savings/)
+  and criticized its chars÷4 savings math for ignoring that cached re-reads
+  bill at ~1/10 price — independent validation of our instability-tax framing:
+  raw "tokens saved" numbers mislead unless cache pricing is accounted for.
+- **[pxpipe](https://github.com/teamchong/pxpipe)** (~6.6k ⭐) — the
+  text-as-image proxy our experimental `text_to_image.py` nods to. Same
+  caveats apply (lossy; never for code).
+- **[token-diet](https://github.com/Kulaxyz/token-diet)** (~500 ⭐ in 3 weeks) —
+  always-on efficiency skill claiming ~31% with "no loss of correctness";
+  closest philosophical neighbor to our output styles, and proof that
+  modest-but-measured claims beat hype.
+- **[claude-lens](https://github.com/foyzulkarim/claude-lens)** /
+  **[token-tracker](https://github.com/stormzhang/token-tracker)** /
+  **[claude-pulse](https://github.com/nikitadoudikov/claude-pulse)** — usage
+  dashboards; claude-lens tracks cache performance (nearest neighbor to our
+  instability tax).
+- **[claude-context-optimizer](https://github.com/egorfedorov/claude-context-optimizer)** —
+  wasted-context heatmaps and ROI reports; the most direct overlap with our
+  audit. Measure its claims on your own workload, as always.
+- **[recall](https://github.com/raiyanyahya/recall)** (~700 ⭐ in a month) —
+  durable memory between sessions ("stop re-explaining your project");
+  adjacent to our batch/loop state philosophy.
+
+Same principle applies to all of the above: prefer the smallest tool, verify
+every percentage on your own logs.
+
 ## Analyzed and deliberately NOT absorbed
 
 - **Full frameworks (SuperClaude, Claude-Flow, BMAD and friends)** — powerful,

@@ -19,6 +19,16 @@ changing anything.
    If `${CLAUDE_PLUGIN_ROOT}` is unset (running outside the plugin), use the
    `scripts/audit.py` path relative to this repo.
 
+   Then run the ghost-skill detector (cross-references installed skills with
+   real invocations mined from local logs):
+
+   ```
+   python3 "${CLAUDE_PLUGIN_ROOT}/scripts/ghost_skills.py" --root .
+   ```
+
+   Respect its observation-window caveat: young or cleaned logs make skills
+   look ghostly — never recommend removal when the window is empty/short.
+
 2. The script output is your ground truth for the mechanical findings
    (context floor, CLAUDE.md size, MCP count, skill descriptions). Do **not**
    re-estimate those numbers yourself — quote them.

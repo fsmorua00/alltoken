@@ -101,6 +101,13 @@ The engine (`scripts/audit.py`) is **deterministic** — no AI, no network. It
 reports CLAUDE.md size, configured MCP servers, and skill descriptions, with
 ~4-chars/token estimates (labelled as estimates, never marketing numbers).
 
+It also hunts **👻 ghost skills** (`scripts/ghost_skills.py`): a skill's
+description pays context rent on EVERY session, while its body is free until
+invoked. The detector cross-references installed skills with real invocations
+mined from your local logs and flags the ones that pay rent but never work —
+pure waste, remove or archive. (With an honest observation-window caveat:
+young logs make skills look ghostly.)
+
 ### 2. Output modes — incl. Caveman 🦴 (proven)
 
 The cheapest way to cut **output** tokens is changing how Claude writes.

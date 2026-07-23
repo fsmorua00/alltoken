@@ -101,6 +101,13 @@ O motor (`scripts/audit.py`) é **determinístico** — sem IA, sem rede. Report
 tamanho do CLAUDE.md, MCPs configurados e descrições de skills, com estimativas
 de ~4 chars/token (rotuladas como estimativas, nunca números de marketing).
 
+Ele também caça **👻 skills-fantasma** (`scripts/ghost_skills.py`): a description
+de uma skill paga aluguel de contexto em TODA sessão, enquanto o corpo é grátis
+até ser invocado. O detector cruza as skills instaladas com as invocações reais
+mineradas dos seus logs locais e aponta as que pagam aluguel mas nunca
+trabalham — desperdício puro, remova ou arquive. (Com a ressalva honesta da
+janela de observação: logs recentes fazem skills parecerem fantasmas.)
+
 ### 2. Modos de saída — incl. Caveman 🦴 (comprovado)
 
 O jeito mais barato de cortar tokens de **saída** é mudar como o Claude escreve.

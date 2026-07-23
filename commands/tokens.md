@@ -19,7 +19,8 @@ Show this menu (adapt to what the user asks):
   injected into CLAUDE.md so every session enforces them.
 
 **Audit & optimize (proven, safe)**
-- `/token-audit` — measure the context floor and rank token waste.
+- `/token-audit` — measure the context floor and rank token waste, including
+  👻 ghost skills (installed, paying description rent, never invoked).
 - `/token-optimize` — apply the safe fixes (concise output, trim CLAUDE.md, tighten skills).
 
 **Output modes (cut OUTPUT tokens)** — install then activate:

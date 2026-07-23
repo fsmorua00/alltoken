@@ -58,4 +58,7 @@ progress — the agent never re-derives it by reasoning.
   without a result file written.
 - Results in files, one-line notes in the queue — long content NEVER goes into
   the conversation.
+- If the goal includes CROSS-item patterns (comparisons, trends across the N
+  items), the one-item rule applies to processing only: after the queue
+  empties, run ONE synthesis pass reading the result files — not before.
 - Combine with `/token-loop`'s gate when the batch also watches external state.

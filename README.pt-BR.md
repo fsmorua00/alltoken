@@ -208,7 +208,29 @@ troca de engine) e o que decidimos **não** absorver — frameworks pesados paga
 aluguel de contexto em toda sessão. O critério: a técnica precisa economizar
 mais do que custa estar instalada.
 
-### 9. Experimental — opt-in, com tradeoffs ⚠️
+### 9. Quando NÃO instalar (guia honesto de encaixe)
+
+O alltoken foi feito para projetos de código de longa duração, codebases
+grandes e workloads de loop/batch. Ele **não** serve pra tudo:
+
+- **Projetos onde prosa é o produto** (escrita criativa, relatórios, conteúdo):
+  o bloco de disciplina manda "bullets e código em vez de prosa" — ativamente
+  errado nesses casos. Pule, ou use só as ferramentas de auditoria.
+- **Repos de equipe**: o `/alltoken` escreve no CLAUDE.md compartilhado —
+  combine com o time antes (o output style fica pessoal no
+  `settings.local.json`; o bloco é pequeno e fácil de remover).
+- **Trabalho crítico** (segurança, financeiro, médico): se você quer o modelo
+  frontier em tudo e raciocínio verboso, use só `/token-audit` +
+  `/token-usage` (medição pura, zero mudança de comportamento).
+- **Monitoramento crítico de produção**: o loop gate falha EM SILÊNCIO se o
+  `--watch`/`--cmd` não capturar o estado real — nunca dependa dele como seu
+  único alerta para algo que importa.
+- **Análise entre itens no batch**: a regra de um-item-por-vez é para o
+  processamento; se o objetivo inclui padrões ENTRE os itens, adicione uma
+  passada final de síntese sobre os arquivos de resultado quando a fila esvaziar.
+- **Projeto descartável de 10 minutos**: o setup custa mais do que economiza.
+
+### 10. Experimental — opt-in, com tradeoffs ⚠️
 
 Incluídas para completude, **nunca aplicadas automaticamente**:
 

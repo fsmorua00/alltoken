@@ -204,7 +204,29 @@ engine swapping) and what we deliberately did **not** absorb — heavy framework
 pay context rent on every session. The bar: a technique must save more than it
 costs to have installed.
 
-### 9. Experimental — opt-in, with tradeoffs ⚠️
+### 9. When NOT to install (honest fit guide)
+
+alltoken is built for long-lived coding projects, big codebases, and
+loop/batch workloads. It is **not** for everything:
+
+- **Prose-is-the-product projects** (creative writing, reports, research
+  content): the discipline block pushes "bullets and code over prose" —
+  actively wrong there. Skip it, or use only the audit tools.
+- **Team repos**: `/alltoken` writes to the shared CLAUDE.md — agree with your
+  team first (the output style stays personal in `settings.local.json`; the
+  block is small and easy to remove).
+- **Safety-critical work** (security, financial, medical): if you want the
+  frontier model on everything and maximum-verbosity reasoning, use only
+  `/token-audit` + `/token-usage` (pure measurement, zero behavior change).
+- **Production-critical monitoring**: the loop gate fails SILENTLY if its
+  `--watch`/`--cmd` doesn't capture the real state — never rely on it as your
+  only alerting for something that matters.
+- **Cross-item analysis in batches**: the queue's one-item-at-a-time rule is
+  for processing; if the goal includes patterns ACROSS items, add a final
+  synthesis pass over the result files after the queue empties.
+- **Throwaway 10-minute projects**: setup costs more than it saves.
+
+### 10. Experimental — opt-in, with tradeoffs ⚠️
 
 Included for completeness, **never applied automatically**:
 

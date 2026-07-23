@@ -169,7 +169,12 @@ def render(data: dict, projects_dir: Path, days: int) -> str:
         f"    input {fmt(t['input'])} · cache-write {fmt(t['cache_create'])} · "
         f"cache-read {fmt(t['cache_read'])} · output {fmt(t['output'])}"
     )
-    out.append(f"    cache-read share of input side: {cache_share:.0f}%   ·   output share: {out_share:.0f}%")
+    instability = (100 * t["cache_create"] / input_side) if input_side else 0
+    out.append(
+        f"    cache-read share: {cache_share:.0f}%   ·   "
+        f"instability tax (cache-write): {instability:.0f}%   ·   "
+        f"output share: {out_share:.0f}%"
+    )
     out.append("")
     out.append("  by model:")
     ranked = sorted(
@@ -185,6 +190,12 @@ def render(data: dict, projects_dir: Path, days: int) -> str:
         out.append("    • cache-read share is LOW → work in focused blocks; long pauses expire the cache.")
     else:
         out.append("    • cache-read share is healthy — focused-block habit is working.")
+    if instability > 25:
+        out.append(
+            "    • instability tax is HIGH → your context prefix keeps getting invalidated.\n"
+            "      A STABLE large prefix is cheaper than an UNSTABLE small one: don't edit\n"
+            "      CLAUDE.md or toggle MCPs/styles mid-session — batch config changes between sessions."
+        )
     if out_share > 20:
         out.append("    • output share is HIGH → a concise output style pays off (/alltoken caveman).")
     frontier_heavy = ranked and ("haiku" not in ranked[0][0].lower()) and len(ranked) >= 1

@@ -241,12 +241,14 @@ footer a{color:var(--ink-2)}
     <div class="title-block">
       <span class="eyebrow">Painel de compra · geladeiras · Brasil</span>
       <h1>Comparador lado a lado — até R$ 5.000</h1>
-      <p class="lede">16 modelos que cabem no orçamento, comparados por custo real de 5 anos (preço + energia),
-        com veredito de <strong>comprar agora</strong> ou <strong>esperar</strong> e busca direta em 11 lojas.</p>
+      <p class="lede">Abre nos <strong>4 Side by Side</strong> que cabem em R$ 5.000, comparados por custo real de
+        5 anos (preço + energia), com veredito de <strong>comprar agora</strong> ou <strong>esperar</strong> e busca
+        direta em 11 lojas. Outros 12 modelos de outros formatos estão a um clique nos filtros.</p>
       <div class="stamp">
         <span class="chip">Levantamento: jul/2026</span>
         <span class="chip">Teto: R$ 5.000</span>
-        <span class="chip on">Bandeira amarela (+R$ 1,885/100 kWh)</span>
+        <span class="chip on">Filtro inicial: Side by Side</span>
+        <span class="chip">Bandeira amarela (+R$ 1,885/100 kWh)</span>
       </div>
     </div>
     <div class="kpis" style="flex:1 1 min(380px,100%);max-width:560px">
@@ -699,7 +701,7 @@ const LOJAS = [
 const STORE_KEY = "comparador-geladeiras-v1";
 const state = {
   tarifa:0.95, orcamento:5000, anos:5,
-  tipos:new Set(), minLitros:0, soInverter:false,
+  tipos:new Set(["Side by Side"]), minLitros:0, soInverter:false,
   sort:"score", soFixados:false,
   precos:{}, fixados:new Set()
 };
@@ -944,7 +946,8 @@ function render(){
 function montarFiltroTipos(){
   const tipos = [...new Set(MODELOS.map(m=>m.tipo))];
   document.getElementById("f-tipo").innerHTML = tipos.map(t=>
-    `<button class="tgl" type="button" data-tipo="${esc(t)}" aria-pressed="false">${esc(t)}</button>`).join("");
+    `<button class="tgl" type="button" data-tipo="${esc(t)}"
+       aria-pressed="${state.tipos.has(t)}">${esc(t)}</button>`).join("");
 }
 
 function bind(){

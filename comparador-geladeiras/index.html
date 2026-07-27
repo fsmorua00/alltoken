@@ -1,0 +1,1020 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comparador de Geladeiras até R$ 5.000 — jul/2026</title>
+<meta name="description" content="Comparador lado a lado de geladeiras até R$ 5.000 no Brasil: custo em 5 anos, consumo, veredito de comprar ou esperar e busca em 11 lojas.">
+</head>
+<body>
+<!-- ARTIFACT:START -->
+<style>
+:root{
+  --bg:#EBF0F2; --surface:#FFFFFF; --surface-2:#F4F8FA; --surface-3:#E7EFF1;
+  --ink:#0B1417; --ink-2:#465A60; --ink-3:#74878D;
+  --line:#D2DEE1; --line-2:#B7C8CC;
+  --accent:#0080A8; --accent-deep:#00617F; --accent-soft:#DDEFF6; --on-accent:#FFFFFF;
+  --s-price:#0080A8; --s-energy:#A8781F;
+  --good:#1B6E4A; --good-soft:#DCEFE4;
+  --warn:#8A5A00; --warn-soft:#F7E9CE;
+  --bad:#9C3A2E;  --bad-soft:#F6E1DD;
+  --shadow:0 1px 2px rgba(11,20,23,.06), 0 8px 24px -12px rgba(11,20,23,.18);
+  --font-ui:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+  --r:5px;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#080F12; --surface:#101A1E; --surface-2:#162328; --surface-3:#1C2C32;
+    --ink:#E6EFF2; --ink-2:#9FB2B7; --ink-3:#76888D;
+    --line:#22333A; --line-2:#33474E;
+    --accent:#46C2E2; --accent-deep:#7FD6EE; --accent-soft:#12333E; --on-accent:#04171D;
+    --s-price:#0E9BC0; --s-energy:#B0822A;
+    --good:#5FD09A; --good-soft:#123227;
+    --warn:#E0B25F; --warn-soft:#33270D;
+    --bad:#EF8E7E;  --bad-soft:#3A1E19;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="light"]{
+  --bg:#EBF0F2; --surface:#FFFFFF; --surface-2:#F4F8FA; --surface-3:#E7EFF1;
+  --ink:#0B1417; --ink-2:#465A60; --ink-3:#74878D;
+  --line:#D2DEE1; --line-2:#B7C8CC;
+  --accent:#0080A8; --accent-deep:#00617F; --accent-soft:#DDEFF6; --on-accent:#FFFFFF;
+  --s-price:#0080A8; --s-energy:#A8781F;
+  --good:#1B6E4A; --good-soft:#DCEFE4;
+  --warn:#8A5A00; --warn-soft:#F7E9CE;
+  --bad:#9C3A2E;  --bad-soft:#F6E1DD;
+  --shadow:0 1px 2px rgba(11,20,23,.06), 0 8px 24px -12px rgba(11,20,23,.18);
+}
+:root[data-theme="dark"]{
+  --bg:#080F12; --surface:#101A1E; --surface-2:#162328; --surface-3:#1C2C32;
+  --ink:#E6EFF2; --ink-2:#9FB2B7; --ink-3:#76888D;
+  --line:#22333A; --line-2:#33474E;
+  --accent:#46C2E2; --accent-deep:#7FD6EE; --accent-soft:#12333E; --on-accent:#04171D;
+  --s-price:#0E9BC0; --s-energy:#B0822A;
+  --good:#5FD09A; --good-soft:#123227;
+  --warn:#E0B25F; --warn-soft:#33270D;
+  --bad:#EF8E7E;  --bad-soft:#3A1E19;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-ui);
+  font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1360px;margin:0 auto;padding:0 20px 72px}
+h1,h2,h3{text-wrap:balance;margin:0;letter-spacing:-.02em;font-weight:700}
+h1{font-size:clamp(26px,3.4vw,40px);letter-spacing:-.035em;line-height:1.08}
+h2{font-size:clamp(18px,2vw,23px);letter-spacing:-.025em}
+h3{font-size:16px;letter-spacing:-.015em}
+p{margin:0}
+a{color:var(--accent);text-underline-offset:2px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+.eyebrow{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.num{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+
+/* ---------- header ---------- */
+header.top{border-bottom:1px solid var(--line);background:var(--surface);
+  background-image:repeating-linear-gradient(90deg,transparent 0 38px,color-mix(in srgb,var(--line) 55%,transparent) 38px 39px)}
+.top-inner{max-width:1360px;margin:0 auto;padding:26px 20px 22px;
+  display:flex;flex-wrap:wrap;gap:18px 28px;align-items:flex-end;justify-content:space-between}
+.title-block{max-width:60ch;min-width:0;display:flex;flex-direction:column;gap:9px}
+.lede{color:var(--ink-2);font-size:15.5px}
+.stamp{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;padding:3px 8px;
+  border:1px solid var(--line-2);border-radius:999px;color:var(--ink-2);background:var(--surface-2);
+  white-space:nowrap}
+.chip.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-deep)}
+
+/* ---------- generic blocks ---------- */
+section{margin-top:34px}
+.sec-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.sec-head p{color:var(--ink-2);font-size:14px;max-width:70ch}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.pad{padding:16px 18px}
+
+.notice{display:flex;gap:12px;align-items:flex-start;border-left:3px solid var(--accent);
+  background:var(--surface);border:1px solid var(--line);border-left-width:3px;
+  border-radius:var(--r);padding:14px 16px;margin-top:22px}
+.notice p{font-size:13.5px;color:var(--ink-2);max-width:95ch}
+.notice strong{color:var(--ink)}
+
+/* ---------- assumptions ---------- */
+.assump{display:flex;flex-wrap:wrap;gap:10px 26px;align-items:flex-end}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:600}
+input[type=number],input[type=text],select{font-family:var(--font-mono);font-size:14px;
+  font-variant-numeric:tabular-nums;padding:7px 9px;border:1px solid var(--line-2);
+  border-radius:4px;background:var(--surface-2);color:var(--ink);min-width:104px}
+.hint{font-size:12px;color:var(--ink-3);max-width:44ch}
+
+/* ---------- KPI ---------- */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(210px,100%),1fr));gap:12px;min-width:0}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:14px 16px;display:flex;flex-direction:column;gap:5px}
+.kpi .v{font-family:var(--font-mono);font-variant-numeric:tabular-nums;
+  font-size:26px;font-weight:600;letter-spacing:-.02em;line-height:1.1}
+.kpi .sub{font-size:12.5px;color:var(--ink-2)}
+
+/* ---------- verdict pills ---------- */
+.pill{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);
+  font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  padding:3px 9px;border-radius:3px;border:1px solid transparent;white-space:nowrap}
+.pill::before{font-size:12px;line-height:1}
+.v-comprar{background:var(--good-soft);color:var(--good);border-color:color-mix(in srgb,var(--good) 35%,transparent)}
+.v-comprar::before{content:"▲"}
+.v-bom{background:var(--accent-soft);color:var(--accent-deep);border-color:color-mix(in srgb,var(--accent) 35%,transparent)}
+.v-bom::before{content:"●"}
+.v-esperar{background:var(--warn-soft);color:var(--warn);border-color:color-mix(in srgb,var(--warn) 35%,transparent)}
+.v-esperar::before{content:"■"}
+.v-evitar{background:var(--bad-soft);color:var(--bad);border-color:color-mix(in srgb,var(--bad) 35%,transparent)}
+.v-evitar::before{content:"▼"}
+
+.tag{font-family:var(--font-mono);font-size:10px;letter-spacing:.07em;text-transform:uppercase;
+  padding:2px 6px;border-radius:3px;background:var(--surface-3);color:var(--ink-2);white-space:nowrap}
+.tag.ver{background:var(--good-soft);color:var(--good)}
+.tag.est{background:var(--warn-soft);color:var(--warn)}
+
+/* ---------- filters ---------- */
+.filters{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:flex-end}
+.toggles{display:flex;flex-wrap:wrap;gap:6px}
+.tgl{font-family:var(--font-mono);font-size:12px;padding:5px 10px;border:1px solid var(--line-2);
+  background:var(--surface-2);color:var(--ink-2);border-radius:3px;cursor:pointer}
+.tgl[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent);font-weight:600}
+.btn{font-family:var(--font-ui);font-size:13px;font-weight:600;padding:7px 13px;border-radius:4px;
+  border:1px solid var(--line-2);background:var(--surface-2);color:var(--ink);cursor:pointer}
+.btn:hover{border-color:var(--accent);color:var(--accent-deep)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+
+/* ---------- matrix ---------- */
+.matrix-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+table.matrix{border-collapse:separate;border-spacing:0;min-width:100%;font-size:13.5px}
+table.matrix th,table.matrix td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+table.matrix thead th{position:sticky;top:0;z-index:3;background:var(--surface-2);
+  border-bottom:1px solid var(--line-2);font-size:13px}
+table.matrix tbody th[scope=row]{position:sticky;left:0;z-index:2;background:var(--surface-2);
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--ink-2);font-weight:600;white-space:nowrap;border-right:1px solid var(--line-2);min-width:172px}
+table.matrix thead th:first-child{left:0;z-index:4;min-width:172px;border-right:1px solid var(--line-2)}
+table.matrix td{min-width:186px;font-variant-numeric:tabular-nums}
+table.matrix tr.band th,table.matrix tr.band td{background:var(--surface-3);
+  font-family:var(--font-mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink-2);padding:6px 12px}
+.col-name{display:flex;flex-direction:column;gap:4px}
+.col-name .brand{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ink-3)}
+.col-name .mdl{font-weight:700;letter-spacing:-.01em;font-size:14px;line-height:1.25}
+.pinbtn{align-self:flex-start;font-family:var(--font-mono);font-size:10px;letter-spacing:.06em;
+  text-transform:uppercase;padding:2px 7px;border:1px solid var(--line-2);border-radius:3px;
+  background:transparent;color:var(--ink-3);cursor:pointer}
+.pinbtn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent);font-weight:700}
+.priceinput{width:112px}
+ul.mini{margin:0;padding-left:15px}
+ul.mini li{margin-bottom:2px}
+
+/* ---------- cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(345px,100%),1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--line-2);
+  border-radius:var(--r);padding:15px 16px;display:flex;flex-direction:column;gap:11px;box-shadow:var(--shadow)}
+.card.k-comprar{border-left-color:var(--good)}
+.card.k-bom{border-left-color:var(--accent)}
+.card.k-esperar{border-left-color:var(--warn)}
+.card.k-evitar{border-left-color:var(--bad)}
+.card-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.rank{font-family:var(--font-mono);font-size:11px;color:var(--ink-3);letter-spacing:.08em}
+.card h3{line-height:1.25}
+.score{font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-size:22px;font-weight:600;
+  line-height:1;color:var(--accent-deep)}
+.figure{display:flex;flex-direction:column;gap:6px}
+.bar{display:flex;gap:2px;height:14px;background:var(--surface-3);border-radius:3px;overflow:hidden}
+.seg{height:100%;border-radius:0}
+.seg:first-child{border-radius:3px 0 0 3px}
+.seg:last-child{border-radius:0 3px 3px 0}
+.seg-price{background:var(--s-price)}
+.seg-energy{background:var(--s-energy)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--ink-2);
+  font-variant-numeric:tabular-nums}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.swatch{width:9px;height:9px;border-radius:2px;flex:none}
+.specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(110px,100%),1fr));gap:8px 10px;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0}
+.spec .k{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.spec .v{font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-size:14px;font-weight:600}
+.why{font-size:13.5px;color:var(--ink-2)}
+.why strong{color:var(--ink)}
+.shops{display:flex;flex-wrap:wrap;gap:5px}
+.shop{font-family:var(--font-mono);font-size:11px;padding:3px 8px;border:1px solid var(--line-2);
+  border-radius:3px;color:var(--ink-2);text-decoration:none;background:var(--surface-2)}
+.shop:hover{border-color:var(--accent);color:var(--accent-deep);background:var(--accent-soft)}
+
+/* ---------- guide ---------- */
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:14px}
+.guide{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px}
+.guide h3{margin-bottom:8px}
+.guide p,.guide li{font-size:13.5px;color:var(--ink-2)}
+.guide li{margin-bottom:5px}
+.guide strong{color:var(--ink)}
+.cal{display:flex;flex-direction:column;gap:0}
+.cal-row{display:grid;grid-template-columns:88px 1fr;gap:12px;padding:8px 0;border-top:1px solid var(--line)}
+.cal-row:first-child{border-top:0}
+.cal-when{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.05em;color:var(--ink);font-weight:600}
+.cal-what{font-size:13px;color:var(--ink-2)}
+.cal-row.now{background:var(--accent-soft);margin:0 -8px;padding:8px;border-radius:3px;border-top-color:transparent}
+
+footer{margin-top:44px;border-top:1px solid var(--line);padding-top:18px;
+  font-size:12.5px;color:var(--ink-3);display:flex;flex-direction:column;gap:8px}
+footer a{color:var(--ink-2)}
+
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (max-width:640px){
+  .top-inner{padding:20px 16px}
+  .wrap{padding:0 16px 56px}
+  .kpi .v{font-size:22px}
+}
+</style>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="title-block">
+      <span class="eyebrow">Painel de compra · geladeiras · Brasil</span>
+      <h1>Comparador lado a lado — até R$ 5.000</h1>
+      <p class="lede">16 modelos que cabem no orçamento, comparados por custo real de 5 anos (preço + energia),
+        com veredito de <strong>comprar agora</strong> ou <strong>esperar</strong> e busca direta em 11 lojas.</p>
+      <div class="stamp">
+        <span class="chip">Levantamento: jul/2026</span>
+        <span class="chip">Teto: R$ 5.000</span>
+        <span class="chip on">Bandeira amarela (+R$ 1,885/100 kWh)</span>
+      </div>
+    </div>
+    <div class="kpis" style="flex:1 1 min(380px,100%);max-width:560px">
+      <div class="kpi">
+        <span class="eyebrow">Mais barato de manter (5 anos)</span>
+        <span class="v" id="kpi-tco">—</span>
+        <span class="sub" id="kpi-tco-sub">—</span>
+      </div>
+      <div class="kpi">
+        <span class="eyebrow">Comprar agora</span>
+        <span class="v" id="kpi-buy">—</span>
+        <span class="sub" id="kpi-buy-sub">modelos no piso de preço</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="notice">
+    <span class="eyebrow" style="flex:none;padding-top:2px">Leia<br>antes</span>
+    <p><strong>De onde vêm os números.</strong> Preços e fichas foram levantados por busca web em julho/2026 —
+      a rede desta sessão bloqueia acesso direto aos sites de varejo, então <strong>nada aqui é preço ao vivo</strong>.
+      Cada modelo mostra a origem e um selo <span class="tag ver">verificado</span> (preço visto em loja/comparador)
+      ou <span class="tag est">estimado</span> (faixa inferida). O jeito certo de usar: clique nos botões de loja,
+      veja o preço de hoje e <strong>digite-o no campo de preço</strong> — o custo de 5 anos, o ranking e o
+      veredito se recalculam na hora. Consumo marcado com <span class="num">~</span> é estimativa da categoria,
+      não dado do Inmetro.</p>
+  </div>
+
+  <section aria-labelledby="h-prem">
+    <div class="sec-head">
+      <h2 id="h-prem">Premissas</h2>
+      <p>Mudam o cálculo de todo o painel. A tarifa é o que mais pesa: 5 anos de energia podem passar de R$ 2.000.</p>
+    </div>
+    <div class="panel pad assump">
+      <div class="field">
+        <label for="in-tarifa">Tarifa (R$/kWh)</label>
+        <input type="number" id="in-tarifa" value="0.95" min="0.3" max="2" step="0.01">
+      </div>
+      <div class="field">
+        <label for="in-orc">Orçamento máx. (R$)</label>
+        <input type="number" id="in-orc" value="5000" min="1000" max="5000" step="100">
+      </div>
+      <div class="field">
+        <label for="in-anos">Horizonte (anos)</label>
+        <input type="number" id="in-anos" value="5" min="1" max="15" step="1">
+      </div>
+      <p class="hint">Média residencial no Brasil em 2026 fica entre R$&nbsp;0,80 e R$&nbsp;1,05/kWh com impostos
+        e bandeira. Pegue o valor exato na sua conta de luz: divida o total pelo consumo em kWh.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-mom">
+    <div class="sec-head">
+      <h2 id="h-mom">O momento: comprar em julho ou esperar?</h2>
+    </div>
+    <div class="panel pad" style="display:flex;flex-direction:column;gap:12px">
+      <p style="font-size:14.5px;color:var(--ink-2);max-width:88ch">
+        <strong style="color:var(--ink)">Resposta curta:</strong> se o modelo que você quer estiver no piso de preço
+        (o painel marca <span class="pill v-comprar">comprar</span>), compre — julho é mês de liquidação de meio de ano
+        e os pisos atuais são competitivos. Se estiver <span class="pill v-esperar">esperar</span>, a Black Friday
+        de novembro é o próximo corte relevante, a ~4 meses. Trocar geladeira quebrada não espera evento nenhum.
+      </p>
+      <div class="cal">
+        <div class="cal-row now">
+          <span class="cal-when">jul/2026 ◀ hoje</span>
+          <span class="cal-what">Liquidações de meio de ano. Pisos bons em duplex inverter. Bandeira amarela encarece
+            a energia — modelo eficiente vale mais agora do que valia em bandeira verde.</span>
+        </div>
+        <div class="cal-row">
+          <span class="cal-when">set/2026</span>
+          <span class="cal-what">Semana do Brasil e antecipações de fim de ano. Corte moderado, útil se você não
+            quer esperar novembro.</span>
+        </div>
+        <div class="cal-row">
+          <span class="cal-when">nov/2026</span>
+          <span class="cal-what">Black Friday — o maior corte do ano em linha branca. Só que a inflação de preço
+            em outubro é real: anote o preço agora para comparar depois.</span>
+        </div>
+        <div class="cal-row">
+          <span class="cal-when">jan–mar/2027</span>
+          <span class="cal-what">Queima de estoque pós-Natal e Semana do Consumidor (março) — historicamente
+            batem a Black Friday em alguns modelos de linha antiga.</span>
+        </div>
+        <div class="cal-row">
+          <span class="cal-when">evite</span>
+          <span class="cal-what">Dia das Mães e Dia dos Pais: campanha forte, desconto fraco, preço-base inflado.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-filt">
+    <div class="sec-head">
+      <h2 id="h-filt">Filtros</h2>
+      <p><span id="count-txt" class="num">—</span></p>
+    </div>
+    <div class="panel pad filters">
+      <div class="field">
+        <span class="eyebrow" style="margin-bottom:2px">Tipo</span>
+        <div class="toggles" id="f-tipo"></div>
+      </div>
+      <div class="field">
+        <label for="f-litros">Litros mín.</label>
+        <input type="number" id="f-litros" value="0" min="0" max="600" step="25">
+      </div>
+      <div class="field">
+        <span class="eyebrow" style="margin-bottom:2px">Compressor</span>
+        <div class="toggles">
+          <button class="tgl" id="f-inv" aria-pressed="false" type="button">Só inverter</button>
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-sort">Ordenar por</label>
+        <select id="f-sort">
+          <option value="score">Índice de compra</option>
+          <option value="tco">Custo total em N anos</option>
+          <option value="preco">Preço</option>
+          <option value="litros">Capacidade</option>
+          <option value="rl">R$ por litro</option>
+          <option value="kwh">Consumo</option>
+        </select>
+      </div>
+      <div class="field">
+        <span class="eyebrow" style="margin-bottom:2px">Matriz</span>
+        <div class="toggles">
+          <button class="tgl" id="f-pin" aria-pressed="false" type="button">Só fixados</button>
+          <button class="btn" id="f-reset" type="button">Limpar tudo</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-mat">
+    <div class="sec-head">
+      <h2 id="h-mat">Matriz lado a lado</h2>
+      <p>Role na horizontal. A coluna de atributos fica fixa. Use <strong>Fixar</strong> no topo de cada modelo
+        e ligue “Só fixados” para comparar 2–4 de perto.</p>
+    </div>
+    <div class="matrix-scroll">
+      <table class="matrix" id="matrix">
+        <caption class="sr">Comparação de geladeiras até R$ 5.000: atributos nas linhas, modelos nas colunas</caption>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-ver">
+    <div class="sec-head">
+      <h2 id="h-ver">Veredito por modelo</h2>
+      <p>Ordenado pelo filtro acima. A barra mostra a composição do custo no horizonte escolhido:
+        o que você paga na loja e o que a geladeira cobra depois, em energia.</p>
+    </div>
+    <div class="legend" style="margin-bottom:12px">
+      <span><i class="swatch" style="background:var(--s-price)"></i> Preço na loja</span>
+      <span><i class="swatch" style="background:var(--s-energy)"></i> Energia no período</span>
+    </div>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <section aria-labelledby="h-guia">
+    <div class="sec-head">
+      <h2 id="h-guia">Guia de escolha</h2>
+    </div>
+    <div class="grid2">
+      <div class="guide">
+        <h3>O que realmente muda a conta</h3>
+        <ul class="mini">
+          <li><strong>Inverter é a única "tecnologia" que se paga.</strong> Um duplex inverter roda perto de
+            25 kWh/mês; um convencional do mesmo tamanho passa de 50. Em 5 anos a R$ 0,95/kWh isso é
+            <span class="num">~R$ 1.400</span> de diferença — mais do que o ágio do inverter.</li>
+          <li><strong>Frost Free é obrigatório</strong> nessa faixa. Degelo manual só se justifica abaixo de R$ 1.500.</li>
+          <li><strong>Selo A do Procel compara dentro da categoria</strong>, não entre categorias. Um Side by Side
+            classe A gasta mais que um duplex classe A — ele é maior. Olhe o kWh/mês absoluto.</li>
+          <li><strong>Litragem útil &gt; litragem total.</strong> Freezer de 90 L num duplex é apertado para quem
+            congela; inverse e side by side entregam 120–176 L.</li>
+        </ul>
+      </div>
+      <div class="guide">
+        <h3>Qual formato para o seu caso</h3>
+        <ul class="mini">
+          <li><strong>Duplex (freezer em cima), 375–390 L</strong> — 1 a 4 pessoas, cozinha estreita, melhor
+            preço por litro. É onde estão os melhores negócios abaixo de R$ 3.000.</li>
+          <li><strong>Inverse (freezer embaixo), 425–454 L</strong> — você abre a geladeira 10× mais que o freezer;
+            aqui o que usa mais fica na altura dos olhos. Custa R$ 700–1.300 a mais.</li>
+          <li><strong>Side by Side, 434–489 L</strong> — só faz sentido com <strong>83–91 cm de vão livre</strong>
+            e porta de cozinha larga. Ganha em freezer (145–176 L) e perde em prateleira funda: nada de travessa
+            grande. Abaixo de R$ 5.000 significa Philco ou Midea — as marcas premium não chegam aqui.</li>
+          <li><strong>Compacta 240 L</strong> — solteiro, kitnet, segunda geladeira. Abaixo de R$ 1.700.</li>
+        </ul>
+      </div>
+      <div class="guide">
+        <h3>Meça antes de clicar em comprar</h3>
+        <ul class="mini">
+          <li><strong>Vão:</strong> largura do modelo + 5 cm laterais + 10 cm no fundo + 15 cm acima. Sem folga
+            o compressor trabalha mais e a conta sobe.</li>
+          <li><strong>Abertura de porta:</strong> meça o arco. Uma porta de 70 cm precisa de ~1,10 m livres à frente
+            para abrir 90° e deixar a gaveta sair.</li>
+          <li><strong>Caminho até a cozinha:</strong> porta de entrada, corredor e curva de escada. Side by Side
+            de 91 cm não passa em porta de 80 cm.</li>
+          <li><strong>Voltagem:</strong> 127 V e 220 V são códigos diferentes do mesmo modelo (ex.: GC-B569NQLC
+            127 V vs. NLL2 220 V). Comprar errado é troca, não conserto.</li>
+          <li><strong>Tomada:</strong> 20 A dedicada, sem extensão nem benjamim.</li>
+        </ul>
+      </div>
+      <div class="guide">
+        <h3>Armadilhas de preço nessa faixa</h3>
+        <ul class="mini">
+          <li><strong>A dispersão entre lojas é brutal.</strong> No levantamento, a mesma Panasonic NR-BB53
+            apareceu de <span class="num">R$ 2.848</span> a <span class="num">R$ 5.009</span> conforme a loja e a
+            variante de cor. Nunca compre no primeiro site.</li>
+          <li><strong>Variante de cor muda o preço, não o produto.</strong> Inox costuma custar R$ 200–500 a mais
+            que branco com ficha idêntica (BRM46MB vs. MK, CRM44MB vs. MK, IF43 vs. IF43S).</li>
+          <li><strong>"De R$ 7.280 por R$ 5.009"</strong> — preço-base fantasma. Compare com o piso do
+            comparador, não com o preço riscado.</li>
+          <li><strong>Frete e instalação</strong> em capital podem somar R$ 150–300. Garantia estendida quase nunca
+            compensa: o compressor já tem 10 anos de fábrica nas linhas inverter.</li>
+          <li><strong>Marketplace ≠ loja.</strong> No Mercado Livre e Magalu, confira se o vendedor é a própria loja;
+            a troca por avaria no transporte depende disso.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-met">
+    <div class="sec-head"><h2 id="h-met">Metodologia</h2></div>
+    <div class="panel pad" style="display:flex;flex-direction:column;gap:10px">
+      <p style="font-size:13.5px;color:var(--ink-2);max-width:92ch">
+        <strong style="color:var(--ink)">Custo total</strong> = preço efetivo + (kWh/mês × 12 × anos × tarifa).
+        <strong style="color:var(--ink)"> Índice de compra (0–100)</strong> = 40% custo total (menor é melhor),
+        25% eficiência (kWh por litro), 20% capacidade, 15% recursos (inverter, classe energética, dispenser,
+        conectividade) — tudo normalizado dentro do conjunto filtrado, então o índice muda quando você muda os filtros.
+        <strong style="color:var(--ink)"> Veredito</strong> compara o preço efetivo com o piso observado do modelo:
+        até 3% acima do piso → comprar; até 12% → bom preço; até 25% → esperar; acima disso → evitar agora.
+      </p>
+      <p style="font-size:13.5px;color:var(--ink-2);max-width:92ch">
+        <strong style="color:var(--ink)">Limites conhecidos.</strong> Larguras exatas não foram confirmadas modelo a
+        modelo — o painel mostra a faixa típica da categoria e você deve conferir a medida na página do produto.
+        Consumo com <span class="num">~</span> é estimado. Preços marcados como estimados servem só de âncora
+        até você digitar o real.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>Fontes do levantamento (jul/2026):</strong> Buscapé, Zoom, Casas Bahia, Mercado Livre, Magazine Luiza,
+      Amazon.com.br, Leroy Merlin, Martinello, Ponto, lojas oficiais Electrolux/Consul/Philco/Panasonic/LG/Midea,
+      TechTudo (jul/2026), Promobit, ANEEL (bandeira tarifária de julho/2026).</p>
+    <p>Preços verificados por busca em julho de 2026 e sujeitos a mudança diária. Este painel não vende nada,
+      não usa link afiliado e não recebe comissão.</p>
+  </footer>
+</div>
+
+<script>
+"use strict";
+
+/* ============================================================
+   DADOS
+   conf: 'ver' = preço visto em loja/comparador no levantamento
+         'est' = faixa estimada, precisa de confirmação
+   kwhEst: true = consumo estimado pela categoria, não do Inmetro
+   ============================================================ */
+const MODELOS = [
+  {
+    id:"consul-crm44", marca:"Consul", modelo:"CRM44MB / CRM44MK", tipo:"Duplex",
+    litros:377, gel:289, freez:88, inverter:true, classe:"A", kwh:24.9, kwhEst:false,
+    preco:2579, piso:2462, faixa:[2462,2950], conf:"ver", volt:"127 V / 220 V",
+    fonte:"Menor preço R$ 2.462 (Magalu) e R$ 2.579 (comparadores); R$ 2.949,90 no Mercado Livre",
+    busca:"geladeira consul crm44mb frost free duplex 377 litros",
+    destaques:["Inverter com economia anunciada de até 38%","Prateleiras em 4 alturas","Painel interno com Turbo"],
+    atencao:["Freezer de 88 L é pequeno para quem congela muito","Versão inox (MK) custa mais pela mesma ficha"],
+    feat:{inv:1,classeTop:0,disp:0,smart:0,painel:1}
+  },
+  {
+    id:"brastemp-brm46", marca:"Brastemp", modelo:"BRM46MB / BRM46MK", tipo:"Duplex",
+    litros:385, gel:291, freez:94, inverter:true, classe:"A", kwh:25.1, kwhEst:false,
+    preco:2598, piso:2598, faixa:[2598,3242], conf:"ver", volt:"127 V / 220 V",
+    fonte:"R$ 2.598 na Casas Bahia e R$ 3.242 no Mercado Livre no levantamento",
+    busca:"geladeira brastemp brm46 frost free duplex 385 litros",
+    destaques:["Xpert Inverter, economia anunciada de até 33%","Smart Cold ajusta a temperatura sozinho","Turbo Freezer"],
+    atencao:["Preço oscila muito entre lojas — sempre cheque 3 sites"],
+    feat:{inv:1,classeTop:0,disp:0,smart:1,painel:1}
+  },
+  {
+    id:"electrolux-if43", marca:"Electrolux", modelo:"IF43 / IF43B / IF43S", tipo:"Duplex",
+    litros:390, gel:293, freez:97, inverter:true, classe:"A+++", kwh:27, kwhEst:true,
+    preco:2969, piso:2969, faixa:[2969,3600], conf:"ver", volt:"127 V / 220 V",
+    fonte:"Menor preço R$ 2.969,10 para a variante IF43B em comparador",
+    busca:"geladeira electrolux if43 frost free duplex 390 litros inverter",
+    destaques:["AutoSense regula a temperatura conforme o uso","Selo A+++ do fabricante","Maior freezer do grupo duplex (97 L)"],
+    atencao:["Consumo em kWh/mês não publicado de forma clara — valor aqui é estimado"],
+    feat:{inv:1,classeTop:1,disp:0,smart:1,painel:1}
+  },
+  {
+    id:"brastemp-brm44", marca:"Brastemp", modelo:"BRM44HB / BRM44HK", tipo:"Duplex",
+    litros:375, gel:288, freez:86, inverter:false, classe:"A", kwh:54, kwhEst:false,
+    preco:2499, piso:2299, faixa:[2299,2899], conf:"est", volt:"127 V / 220 V",
+    fonte:"Ficha confirmada; preço estimado pela faixa da linha em jul/2026",
+    busca:"geladeira brastemp brm44 frost free duplex 375 litros",
+    destaques:["Compartimento extrafrio Fresh Zone","Painel eletrônico externo"],
+    atencao:["Sem inverter: gasta ~2× o da BRM46 pelo mesmo tamanho","Só compensa se sair bem abaixo da BRM46"],
+    feat:{inv:0,classeTop:0,disp:0,smart:0,painel:1}
+  },
+  {
+    id:"continental-tc45s", marca:"Continental", modelo:"TC45S", tipo:"Duplex",
+    litros:400, gel:286, freez:114, inverter:false, classe:"A", kwh:52, kwhEst:true,
+    preco:2699, piso:2450, faixa:[2450,2890], conf:"ver", volt:"127 V / 220 V",
+    fonte:"Citada em jul/2026 como o topo de uma faixa apurada de R$ 1.600 a R$ 2.700",
+    busca:"geladeira continental tc45s frost free 400 litros",
+    destaques:["Freezer de 114 L, o maior entre os duplex da lista","400 L por menos de R$ 2.700"],
+    atencao:["Sem inverter — o custo aparece na conta de luz","Marca com rede de assistência menor que Consul/Brastemp"],
+    feat:{inv:0,classeTop:0,disp:0,smart:0,painel:0}
+  },
+  {
+    id:"panasonic-bt41", marca:"Panasonic", modelo:"NR-BT41PD2WA", tipo:"Duplex",
+    litros:387, gel:0, freez:0, inverter:true, classe:"A", kwh:30, kwhEst:true,
+    preco:2650, piso:2390, faixa:[2390,2890], conf:"est", volt:"127 V / 220 V",
+    fonte:"Citada em jul/2026 dentro da faixa apurada de R$ 1.600 a R$ 2.700; litragem a confirmar",
+    busca:"geladeira panasonic nr-bt41pd2wa frost free inverter",
+    destaques:["Inverter Panasonic em faixa de preço de modelo convencional"],
+    atencao:["Divisão interna e consumo não confirmados — confira a ficha na loja"],
+    feat:{inv:1,classeTop:0,disp:0,smart:0,painel:1}
+  },
+  {
+    id:"panasonic-bb53", marca:"Panasonic", modelo:"NR-BB53PV3 / PV3X / GV3B", tipo:"Inverse",
+    litros:425, gel:305, freez:120, inverter:true, classe:"A", kwh:39.9, kwhEst:false,
+    preco:2849, piso:2849, faixa:[2849,5009], conf:"ver", volt:"127 V / 220 V",
+    fonte:"Menor preço R$ 2.848,61 (variante PV3X); no mesmo período aparecia por R$ 3.599 na Amazon, R$ 3.999 no Mercado Livre e R$ 5.009 no Magalu",
+    busca:"geladeira panasonic nr-bb53 frost free inverse 425 litros econavi",
+    destaques:["Inverter + Econavi, que aprende o uso e reduz o motor nos períodos parados","Freezer embaixo com 120 L","Melhor custo-benefício entre os inverse"],
+    atencao:["Dispersão de preço absurda entre lojas e variantes de cor — o vidro espelhado (GV3B) é o mais caro"],
+    feat:{inv:1,classeTop:0,disp:0,smart:1,painel:1}
+  },
+  {
+    id:"lg-gcb569", marca:"LG", modelo:"GC-B569NLL2 (220 V) / NQLC (127 V)", tipo:"Inverse",
+    litros:451, gel:0, freez:0, inverter:true, classe:"A", kwh:38, kwhEst:true,
+    preco:4284, piso:3990, faixa:[3990,4599], conf:"ver", volt:"127 V ou 220 V (códigos distintos)",
+    fonte:"R$ 4.284,13 na Leroy Merlin em 23/jun/2026",
+    busca:"geladeira lg gc-b569nll2 inverse 451 litros smart inverter",
+    destaques:["Smart Inverter com 10 anos de garantia no compressor","451 L, a maior capacidade entre os inverse aqui","Conectividade LG ThinQ"],
+    atencao:["Confira a voltagem: NLL2 é 220 V, NQLC/NLLM são 127 V","Perto do teto do orçamento"],
+    feat:{inv:1,classeTop:0,disp:0,smart:1,painel:1}
+  },
+  {
+    id:"electrolux-ib53", marca:"Electrolux", modelo:"IB53 / IB53X", tipo:"Inverse",
+    litros:454, gel:0, freez:0, inverter:true, classe:"A", kwh:37, kwhEst:true,
+    preco:4399, piso:3990, faixa:[3990,4790], conf:"est", volt:"127 V / 220 V",
+    fonte:"Ficha confirmada (454 L, inverter, economia anunciada de até 33%); preço não fechado no levantamento",
+    busca:"geladeira electrolux ib53 bottom freezer inverse 454 litros",
+    destaques:["Maior litragem entre os inverse junto com a LG","Bottom freezer com gavetão"],
+    atencao:["Preço precisa ser confirmado — pode estourar o teto de R$ 5.000 na versão inox (IB53X)"],
+    feat:{inv:1,classeTop:0,disp:0,smart:0,painel:1}
+  },
+  {
+    id:"consul-cre44", marca:"Consul", modelo:"CRE44BK", tipo:"Inverse",
+    litros:397, gel:0, freez:0, inverter:false, classe:"A", kwh:50, kwhEst:true,
+    preco:3299, piso:2990, faixa:[2990,3690], conf:"est", volt:"127 V / 220 V",
+    fonte:"Ficha confirmada (397 L, freezer embaixo, Turbo Freezer, sem inverter); preço estimado",
+    busca:"geladeira consul cre44 inverse frost free 397 litros",
+    destaques:["Formato inverse com preço de duplex","Controle externo e Turbo Freezer"],
+    atencao:["Sem inverter — em 5 anos a energia come a economia do preço","Só vale se você quiser inverse gastando pouco"],
+    feat:{inv:0,classeTop:0,disp:0,smart:0,painel:1}
+  },
+  {
+    id:"electrolux-it56", marca:"Electrolux", modelo:"IT56", tipo:"Top Freezer",
+    litros:474, gel:346, freez:128, inverter:true, classe:"A", kwh:36, kwhEst:true,
+    preco:4499, piso:4100, faixa:[4100,4990], conf:"est", volt:"127 V / 220 V",
+    fonte:"Ficha confirmada (474 L, freezer de 128 L, economia anunciada de até 47%); preço estimado",
+    busca:"geladeira electrolux it56 top freezer 474 litros inverter",
+    destaques:["474 L — a maior capacidade da lista fora dos side by side","Freezer de 128 L em formato convencional","Cabe em vão estreito apesar do tamanho"],
+    atencao:["Preço a confirmar; encosta no teto do orçamento"],
+    feat:{inv:1,classeTop:0,disp:0,smart:1,painel:1}
+  },
+  {
+    id:"philco-prf504i", marca:"Philco", modelo:"PRF504I Eco Inverter", tipo:"Side by Side",
+    litros:489, gel:324, freez:165, inverter:true, classe:"A", kwh:45, kwhEst:true,
+    preco:3959, piso:3959, faixa:[3959,4690], conf:"ver", volt:"127 V / 220 V",
+    fonte:"Menor preço R$ 3.959,00 em comparador",
+    busca:"geladeira philco prf504i side by side 489 litros inverter",
+    destaques:["489 L — a maior da lista inteira","Freezer de 165 L, quase o dobro de um duplex","Side by Side de verdade por menos de R$ 4.000"],
+    atencao:["Precisa de 83–91 cm de vão livre — meça antes","Prateleiras estreitas: travessa grande não entra","Assistência Philco é mais escassa que a das líderes"],
+    feat:{inv:1,classeTop:0,disp:0,smart:0,painel:1}
+  },
+  {
+    id:"philco-prf535id", marca:"Philco", modelo:"PRF535ID Eco Inverter", tipo:"Side by Side",
+    litros:434, gel:289, freez:145, inverter:true, classe:"A", kwh:43, kwhEst:true,
+    preco:4257, piso:4257, faixa:[4257,4899], conf:"ver", volt:"127 V / 220 V",
+    fonte:"Menor preço R$ 4.256,91 (versão inox) em comparador",
+    busca:"geladeira philco prf535id side by side 434 litros inverter",
+    destaques:["Dispenser de água na porta — raro abaixo de R$ 5.000","Smart Cooling","Freezer de 145 L"],
+    atencao:["Menor que a PRF504I e mais cara — o que você paga é o dispenser","Dispenser sem encanamento: reservatório interno precisa ser reabastecido"],
+    feat:{inv:1,classeTop:0,disp:1,smart:1,painel:1}
+  },
+  {
+    id:"philco-prf535i", marca:"Philco", modelo:"PRF535I", tipo:"Side by Side",
+    litros:437, gel:0, freez:0, inverter:true, classe:"A", kwh:43, kwhEst:true,
+    preco:4199, piso:3890, faixa:[3890,4590], conf:"est", volt:"127 V / 220 V",
+    fonte:"Ficha confirmada (437 L, inverter, side by side); preço estimado — é a PRF535ID sem dispenser",
+    busca:"geladeira philco prf535i side by side 437 litros inverter",
+    destaques:["Mesma base da PRF535ID sem o dispenser, por menos"],
+    atencao:["Preço a confirmar","Mesmas restrições de vão do formato side by side"],
+    feat:{inv:1,classeTop:0,disp:0,smart:0,painel:1}
+  },
+  {
+    id:"midea-mdrs598", marca:"Midea", modelo:"MDRS598FGA041 / 042", tipo:"Side by Side",
+    litros:442, gel:266, freez:176, inverter:true, classe:"A+++", kwh:42.6, kwhEst:false,
+    preco:4499, piso:4499, faixa:[4499,5290], conf:"ver", volt:"127 V (041) / 220 V (042)",
+    fonte:"R$ 4.499,00 em varejo regional (Martinello) para a versão 110 V",
+    busca:"geladeira midea mdrs598 side by side 442 litros inverter",
+    destaques:["Único A+++ com consumo publicado: 42,6 kWh/mês","Freezer de 176 L — o maior da lista","Painel touch e controle por app","Largura de 83,5 cm, a mais estreita entre os side by side"],
+    atencao:["Encosta no teto de R$ 5.000 e passa dele em várias lojas","Rede de assistência Midea ainda em expansão no Brasil"],
+    feat:{inv:1,classeTop:1,disp:0,smart:1,painel:1}
+  },
+  {
+    id:"electrolux-re31", marca:"Electrolux", modelo:"RE31", tipo:"Compacta",
+    litros:240, gel:0, freez:0, inverter:false, classe:"A", kwh:32, kwhEst:true,
+    preco:1612, piso:1399, faixa:[1399,1799], conf:"ver", volt:"127 V / 220 V",
+    fonte:"R$ 1.612 em apuração de jul/2026",
+    busca:"geladeira electrolux re31 240 litros",
+    destaques:["Controle externo de temperatura","Gaveta extrafria","Cabe em cozinha compacta e kitnet"],
+    atencao:["240 L não atende família","Sem inverter, mas o tamanho segura o consumo"],
+    feat:{inv:0,classeTop:0,disp:0,smart:0,painel:0}
+  }
+];
+
+const LARGURA_TIPICA = {
+  "Duplex":"60–70 cm (típico)",
+  "Inverse":"60–70 cm (típico)",
+  "Top Freezer":"70–80 cm (típico)",
+  "Side by Side":"83–91 cm (típico)",
+  "Compacta":"53–60 cm (típico)"
+};
+MODELOS.find(m=>m.id==="midea-mdrs598").largura = "83,5 cm (confirmada)";
+
+const LOJAS = [
+  {n:"Magalu",     u:q=>`https://www.magazineluiza.com.br/busca/${encodeURIComponent(q)}/`},
+  {n:"Amazon",     u:q=>`https://www.amazon.com.br/s?k=${encodeURIComponent(q)}`},
+  {n:"Mercado Livre", u:q=>`https://lista.mercadolivre.com.br/${q.trim().replace(/\s+/g,"-")}`},
+  {n:"Casas Bahia",u:q=>`https://www.casasbahia.com.br/${q.trim().replace(/\s+/g,"-")}/b`},
+  {n:"Ponto",      u:q=>`https://www.pontofrio.com.br/${q.trim().replace(/\s+/g,"-")}/b`},
+  {n:"Americanas", u:q=>`https://www.americanas.com.br/busca/${q.trim().replace(/\s+/g,"-")}`},
+  {n:"Fast Shop",  u:q=>`https://www.fastshop.com.br/web/busca?q=${encodeURIComponent(q)}`},
+  {n:"Buscapé",    u:q=>`https://www.buscape.com.br/busca/${encodeURIComponent(q)}`},
+  {n:"Zoom",       u:q=>`https://www.zoom.com.br/busca?q=${encodeURIComponent(q)}`},
+  {n:"Promobit",   u:q=>`https://www.promobit.com.br/busca/?q=${encodeURIComponent(q)}`},
+  {n:"Google Shop",u:q=>`https://www.google.com/search?tbm=shop&q=${encodeURIComponent(q)}`}
+];
+
+/* ============================================================ ESTADO */
+const STORE_KEY = "comparador-geladeiras-v1";
+const state = {
+  tarifa:0.95, orcamento:5000, anos:5,
+  tipos:new Set(), minLitros:0, soInverter:false,
+  sort:"score", soFixados:false,
+  precos:{}, fixados:new Set()
+};
+
+function load(){
+  try{
+    const raw = localStorage.getItem(STORE_KEY);
+    if(!raw) return;
+    const s = JSON.parse(raw);
+    if(typeof s.tarifa==="number") state.tarifa=s.tarifa;
+    if(typeof s.orcamento==="number") state.orcamento=s.orcamento;
+    if(typeof s.anos==="number") state.anos=s.anos;
+    if(s.precos) state.precos=s.precos;
+    if(Array.isArray(s.fixados)) state.fixados=new Set(s.fixados);
+  }catch(e){/* armazenamento indisponível: segue sem persistir */}
+}
+function save(){
+  try{
+    localStorage.setItem(STORE_KEY, JSON.stringify({
+      tarifa:state.tarifa, orcamento:state.orcamento, anos:state.anos,
+      precos:state.precos, fixados:[...state.fixados]
+    }));
+  }catch(e){/* idem */}
+}
+
+/* ============================================================ FORMATO */
+const fmtBRL = new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0});
+const fmtBRL2 = new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL",minimumFractionDigits:2});
+const fmtN = new Intl.NumberFormat("pt-BR",{maximumFractionDigits:1});
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+/* ============================================================ CÁLCULO */
+function precoEfetivo(m){
+  const p = state.precos[m.id];
+  return (typeof p === "number" && p > 0) ? p : m.preco;
+}
+function calcular(m){
+  const preco = precoEfetivo(m);
+  const energia = m.kwh * 12 * state.anos * state.tarifa;
+  const total = preco + energia;
+  const razao = preco / m.piso;
+  let k, rotulo, motivo;
+  if(razao <= 1.03){
+    k="comprar"; rotulo="Comprar";
+    motivo = `Está no piso observado (${fmtBRL.format(m.piso)}). Esperar tende a render pouco — e o preço pode subir antes de cair.`;
+  }else if(razao <= 1.12){
+    k="bom"; rotulo="Bom preço";
+    motivo = `Fica ${Math.round((razao-1)*100)}% acima do piso de ${fmtBRL.format(m.piso)}. Se você precisa agora, é uma compra defensável.`;
+  }else if(razao <= 1.25){
+    k="esperar"; rotulo="Esperar";
+    motivo = `Está ${Math.round((razao-1)*100)}% acima do piso de ${fmtBRL.format(m.piso)}. Procure em outra loja antes; se não achar, a Black Friday é o próximo corte.`;
+  }else{
+    k="evitar"; rotulo="Evitar agora";
+    motivo = `${Math.round((razao-1)*100)}% acima do piso de ${fmtBRL.format(m.piso)}. Esse valor já apareceu bem menor no levantamento — não pague isso.`;
+  }
+  return {preco, energia, total, k, rotulo, motivo,
+          rl: preco/m.litros, kwhL: m.kwh/m.litros, estouro: preco > state.orcamento};
+}
+function featScore(m){
+  const f=m.feat;
+  return Math.min(1, f.inv*0.5 + f.classeTop*0.15 + f.disp*0.1 + f.smart*0.15 + f.painel*0.1);
+}
+function normalizar(v, min, max, inverter){
+  if(max === min) return 0.5;
+  const n = (v-min)/(max-min);
+  return inverter ? 1-n : n;
+}
+
+function filtrar(){
+  return MODELOS.filter(m=>{
+    if(precoEfetivo(m) > state.orcamento) return false;
+    if(state.tipos.size && !state.tipos.has(m.tipo)) return false;
+    if(m.litros < state.minLitros) return false;
+    if(state.soInverter && !m.inverter) return false;
+    return true;
+  });
+}
+
+function enriquecer(lista){
+  const dados = lista.map(m=>({m, c:calcular(m)}));
+  if(!dados.length) return dados;
+  const totais = dados.map(d=>d.c.total);
+  const kwhLs  = dados.map(d=>d.c.kwhL);
+  const litros = dados.map(d=>d.m.litros);
+  const [tMin,tMax] = [Math.min(...totais), Math.max(...totais)];
+  const [kMin,kMax] = [Math.min(...kwhLs), Math.max(...kwhLs)];
+  const [lMin,lMax] = [Math.min(...litros), Math.max(...litros)];
+  dados.forEach(d=>{
+    d.score = Math.round(100*(
+      0.40*normalizar(d.c.total, tMin, tMax, true) +
+      0.25*normalizar(d.c.kwhL, kMin, kMax, true) +
+      0.20*normalizar(d.m.litros, lMin, lMax, false) +
+      0.15*featScore(d.m)
+    ));
+    d.maxTotal = tMax;
+  });
+  const ordem = {
+    score:(a,b)=>b.score-a.score,
+    tco:(a,b)=>a.c.total-b.c.total,
+    preco:(a,b)=>a.c.preco-b.c.preco,
+    litros:(a,b)=>b.m.litros-a.m.litros,
+    rl:(a,b)=>a.c.rl-b.c.rl,
+    kwh:(a,b)=>a.m.kwh-b.m.kwh
+  };
+  dados.sort(ordem[state.sort] || ordem.score);
+  return dados;
+}
+
+/* ============================================================ RENDER */
+const LINHAS = [
+  {band:"Preço e custo"},
+  {k:"preco", t:"Preço efetivo", f:d=>`<input class="priceinput num" type="number" min="0" step="10"
+      value="${Math.round(d.c.preco)}" data-price="${d.m.id}"
+      aria-label="Preço de ${esc(d.m.marca)} ${esc(d.m.modelo)}">`},
+  {k:"conf", t:"Origem do preço", f:d=>`<span class="tag ${d.m.conf}">${d.m.conf==="ver"?"verificado":"estimado"}</span>
+      <div style="font-size:12px;color:var(--ink-3);margin-top:4px;max-width:30ch">${esc(d.m.fonte)}</div>`},
+  {k:"faixa", t:"Faixa vista no levantamento", f:d=>`${fmtBRL.format(d.m.faixa[0])} – ${fmtBRL.format(d.m.faixa[1])}`},
+  {k:"energia", t:"Energia no período", f:d=>fmtBRL.format(d.c.energia)},
+  {k:"total", t:"Custo total", f:d=>`<strong>${fmtBRL.format(d.c.total)}</strong>`},
+  {k:"rl", t:"R$ por litro", f:d=>fmtBRL2.format(d.c.rl)},
+
+  {band:"Capacidade"},
+  {k:"tipo", t:"Formato", f:d=>esc(d.m.tipo)},
+  {k:"litros", t:"Capacidade total", f:d=>`<strong>${d.m.litros} L</strong>`},
+  {k:"div", t:"Geladeira / freezer", f:d=> d.m.gel ? `${d.m.gel} L / ${d.m.freez} L`
+      : `<span style="color:var(--ink-3)">não confirmado</span>`},
+  {k:"larg", t:"Largura", f:d=> esc(d.m.largura || LARGURA_TIPICA[d.m.tipo])},
+
+  {band:"Consumo"},
+  {k:"inv", t:"Compressor inverter", f:d=> d.m.inverter
+      ? `<strong style="color:var(--good)">sim</strong>` : `<span style="color:var(--bad)">não</span>`},
+  {k:"classe", t:"Classe energética", f:d=>esc(d.m.classe)},
+  {k:"kwh", t:"Consumo (kWh/mês)", f:d=>`${d.m.kwhEst?"~":""}${fmtN.format(d.m.kwh)}`},
+  {k:"kwhl", t:"kWh por 100 L", f:d=>fmtN.format(d.c.kwhL*100)},
+  {k:"volt", t:"Voltagem", f:d=>esc(d.m.volt)},
+
+  {band:"Avaliação"},
+  {k:"score", t:"Índice de compra", f:d=>`<strong class="num" style="font-size:16px">${d.score}</strong><span style="color:var(--ink-3)">/100</span>`},
+  {k:"ver", t:"Veredito", f:d=>`<span class="pill v-${d.c.k}">${d.c.rotulo}</span>`},
+  {k:"dest", t:"Destaques", f:d=>`<ul class="mini">${d.m.destaques.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`},
+  {k:"aten", t:"Pontos de atenção", f:d=>`<ul class="mini">${d.m.atencao.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`},
+  {k:"lojas", t:"Buscar nas lojas", f:d=>`<div class="shops">${LOJAS.map(l=>
+      `<a class="shop" href="${l.u(d.m.busca)}" target="_blank" rel="noopener noreferrer">${esc(l.n)}</a>`).join("")}</div>`}
+];
+
+function renderMatriz(dados){
+  const tbl = document.getElementById("matrix");
+  const cols = state.soFixados && state.fixados.size
+    ? dados.filter(d=>state.fixados.has(d.m.id)) : dados;
+  if(!cols.length){
+    tbl.innerHTML = `<tbody><tr><td style="padding:22px;color:var(--ink-2)">Nenhum modelo com esses filtros.
+      Limpe os filtros ou aumente o orçamento.</td></tr></tbody>`;
+    return;
+  }
+  const head = `<thead><tr><th scope="col"><span class="eyebrow">Atributo</span></th>${
+    cols.map(d=>`<th scope="col"><div class="col-name">
+      <span class="brand">${esc(d.m.marca)}</span>
+      <span class="mdl">${esc(d.m.modelo)}</span>
+      <button class="pinbtn" type="button" data-pin="${d.m.id}"
+        aria-pressed="${state.fixados.has(d.m.id)}">${state.fixados.has(d.m.id)?"fixado":"fixar"}</button>
+    </div></th>`).join("")}</tr></thead>`;
+  const body = `<tbody>${LINHAS.map(r=>{
+    if(r.band) return `<tr class="band"><th scope="row">${esc(r.band)}</th>${
+      cols.map(()=>`<td></td>`).join("")}</tr>`;
+    return `<tr><th scope="row">${esc(r.t)}</th>${cols.map(d=>`<td>${r.f(d)}</td>`).join("")}</tr>`;
+  }).join("")}</tbody>`;
+  tbl.innerHTML = head + body;
+}
+
+function renderCards(dados){
+  const el = document.getElementById("cards");
+  if(!dados.length){ el.innerHTML = `<p style="color:var(--ink-2)">Nenhum modelo com esses filtros.</p>`; return; }
+  el.innerHTML = dados.map((d,i)=>{
+    const pctPreco = (d.c.preco / d.maxTotal) * 100;
+    const pctEner  = (d.c.energia / d.maxTotal) * 100;
+    return `<article class="card k-${d.c.k}">
+      <div class="card-head">
+        <div>
+          <span class="rank">#${String(i+1).padStart(2,"0")} · ${esc(d.m.tipo)}</span>
+          <h3>${esc(d.m.marca)} ${esc(d.m.modelo)}</h3>
+        </div>
+        <div style="text-align:right">
+          <div class="score">${d.score}</div>
+          <span class="eyebrow">índice</span>
+        </div>
+      </div>
+      <div><span class="pill v-${d.c.k}">${d.c.rotulo}</span>
+        <span class="tag ${d.m.conf}" style="margin-left:6px">${d.m.conf==="ver"?"preço verificado":"preço estimado"}</span></div>
+      <div class="figure">
+        <div class="bar" role="img" aria-label="Custo em ${state.anos} anos: ${fmtBRL.format(d.c.preco)} de preço mais ${fmtBRL.format(d.c.energia)} de energia">
+          <span class="seg seg-price" style="width:${pctPreco.toFixed(1)}%"></span>
+          <span class="seg seg-energy" style="width:${pctEner.toFixed(1)}%"></span>
+        </div>
+        <div class="legend">
+          <span><i class="swatch" style="background:var(--s-price)"></i>${fmtBRL.format(d.c.preco)} na loja</span>
+          <span><i class="swatch" style="background:var(--s-energy)"></i>${fmtBRL.format(d.c.energia)} de energia</span>
+          <span><strong>${fmtBRL.format(d.c.total)}</strong> em ${state.anos} anos</span>
+        </div>
+      </div>
+      <div class="specs">
+        <div class="spec"><div class="k">Capacidade</div><div class="v">${d.m.litros} L</div></div>
+        <div class="spec"><div class="k">Consumo</div><div class="v">${d.m.kwhEst?"~":""}${fmtN.format(d.m.kwh)} kWh</div></div>
+        <div class="spec"><div class="k">Inverter</div><div class="v">${d.m.inverter?"sim":"não"}</div></div>
+        <div class="spec"><div class="k">R$/litro</div><div class="v">${fmtBRL2.format(d.c.rl)}</div></div>
+      </div>
+      <p class="why">${d.c.motivo}</p>
+      <div class="shops">${LOJAS.map(l=>
+        `<a class="shop" href="${l.u(d.m.busca)}" target="_blank" rel="noopener noreferrer">${esc(l.n)}</a>`).join("")}</div>
+    </article>`;
+  }).join("");
+}
+
+function renderKPIs(dados){
+  const tcoEl = document.getElementById("kpi-tco");
+  const tcoSub = document.getElementById("kpi-tco-sub");
+  const buyEl = document.getElementById("kpi-buy");
+  const buySub = document.getElementById("kpi-buy-sub");
+  if(!dados.length){
+    tcoEl.textContent="—"; tcoSub.textContent="sem modelos no filtro";
+    buyEl.textContent="0"; buySub.textContent="modelos no piso de preço";
+    return;
+  }
+  const barato = dados.reduce((a,b)=> a.c.total <= b.c.total ? a : b);
+  tcoEl.textContent = fmtBRL.format(barato.c.total);
+  tcoSub.textContent = `${barato.m.marca} ${barato.m.modelo} · preço + ${state.anos} anos de energia`;
+  const n = dados.filter(d=>d.c.k==="comprar").length;
+  buyEl.textContent = String(n);
+  buySub.textContent = n===1 ? "modelo no piso de preço" : "modelos no piso de preço";
+  document.getElementById("count-txt").textContent =
+    `${dados.length} de ${MODELOS.length} modelos no filtro · fixados: ${state.fixados.size}`;
+}
+
+function render(){
+  const dados = enriquecer(filtrar());
+  renderKPIs(dados);
+  renderMatriz(dados);
+  renderCards(dados);
+  save();
+}
+
+/* ============================================================ EVENTOS */
+function montarFiltroTipos(){
+  const tipos = [...new Set(MODELOS.map(m=>m.tipo))];
+  document.getElementById("f-tipo").innerHTML = tipos.map(t=>
+    `<button class="tgl" type="button" data-tipo="${esc(t)}" aria-pressed="false">${esc(t)}</button>`).join("");
+}
+
+function bind(){
+  document.getElementById("in-tarifa").addEventListener("input", e=>{
+    const v = parseFloat(e.target.value); if(v>0){ state.tarifa=v; render(); }
+  });
+  document.getElementById("in-orc").addEventListener("input", e=>{
+    const v = parseFloat(e.target.value); if(v>0){ state.orcamento=v; render(); }
+  });
+  document.getElementById("in-anos").addEventListener("input", e=>{
+    const v = parseInt(e.target.value,10); if(v>0){ state.anos=v; render(); }
+  });
+  document.getElementById("f-litros").addEventListener("input", e=>{
+    state.minLitros = parseInt(e.target.value,10) || 0; render();
+  });
+  document.getElementById("f-sort").addEventListener("change", e=>{ state.sort=e.target.value; render(); });
+  document.getElementById("f-inv").addEventListener("click", e=>{
+    state.soInverter = !state.soInverter;
+    e.currentTarget.setAttribute("aria-pressed", String(state.soInverter)); render();
+  });
+  document.getElementById("f-pin").addEventListener("click", e=>{
+    state.soFixados = !state.soFixados;
+    e.currentTarget.setAttribute("aria-pressed", String(state.soFixados)); render();
+  });
+  document.getElementById("f-tipo").addEventListener("click", e=>{
+    const b = e.target.closest("[data-tipo]"); if(!b) return;
+    const t = b.dataset.tipo;
+    if(state.tipos.has(t)) state.tipos.delete(t); else state.tipos.add(t);
+    b.setAttribute("aria-pressed", String(state.tipos.has(t))); render();
+  });
+  document.getElementById("f-reset").addEventListener("click", ()=>{
+    state.tipos.clear(); state.minLitros=0; state.soInverter=false; state.soFixados=false;
+    state.precos={}; state.fixados.clear(); state.orcamento=5000; state.tarifa=0.95; state.anos=5;
+    document.getElementById("in-tarifa").value="0.95";
+    document.getElementById("in-orc").value="5000";
+    document.getElementById("in-anos").value="5";
+    document.getElementById("f-litros").value="0";
+    document.getElementById("f-inv").setAttribute("aria-pressed","false");
+    document.getElementById("f-pin").setAttribute("aria-pressed","false");
+    document.querySelectorAll("[data-tipo]").forEach(b=>b.setAttribute("aria-pressed","false"));
+    render();
+  });
+
+  const matriz = document.getElementById("matrix");
+  matriz.addEventListener("input", e=>{
+    const inp = e.target.closest("[data-price]"); if(!inp) return;
+    const v = parseFloat(inp.value);
+    const id = inp.dataset.price;
+    if(v>0) state.precos[id]=v; else delete state.precos[id];
+    const pos = inp.selectionStart;
+    render();
+    const again = document.querySelector(`[data-price="${id}"]`);
+    if(again){ again.focus(); try{ again.setSelectionRange(pos,pos); }catch(err){} }
+  });
+  matriz.addEventListener("click", e=>{
+    const b = e.target.closest("[data-pin]"); if(!b) return;
+    const id = b.dataset.pin;
+    if(state.fixados.has(id)) state.fixados.delete(id); else state.fixados.add(id);
+    render();
+  });
+}
+
+load();
+document.getElementById("in-tarifa").value = state.tarifa;
+document.getElementById("in-orc").value = state.orcamento;
+document.getElementById("in-anos").value = state.anos;
+montarFiltroTipos();
+bind();
+render();
+</script>
+<!-- ARTIFACT:END -->
+</body>
+</html>

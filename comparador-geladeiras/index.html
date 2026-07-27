@@ -243,7 +243,7 @@ footer a{color:var(--ink-2)}
       <h1>Comparador lado a lado — até R$ 5.000</h1>
       <p class="lede">Abre nos <strong>4 Side by Side</strong> que cabem em R$ 5.000, comparados por custo real de
         5 anos (preço + energia), com veredito de <strong>comprar agora</strong> ou <strong>esperar</strong> e busca
-        direta em 11 lojas. Outros 12 modelos de outros formatos estão a um clique nos filtros.</p>
+        direta em 14 lojas, Shopee inclusa. Outros 12 modelos de outros formatos estão a um clique nos filtros.</p>
       <div class="stamp">
         <span class="chip">Levantamento: jul/2026</span>
         <span class="chip">Teto: R$ 5.000</span>
@@ -466,8 +466,11 @@ footer a{color:var(--ink-2)}
             comparador, não com o preço riscado.</li>
           <li><strong>Frete e instalação</strong> em capital podem somar R$ 150–300. Garantia estendida quase nunca
             compensa: o compressor já tem 10 anos de fábrica nas linhas inverter.</li>
-          <li><strong>Marketplace ≠ loja.</strong> No Mercado Livre e Magalu, confira se o vendedor é a própria loja;
-            a troca por avaria no transporte depende disso.</li>
+          <li><strong>Marketplace costuma ser o piso — e o risco.</strong> Shopee, Mercado Livre e o marketplace
+            do Magalu quase sempre batem o varejo tradicional em linha branca, às vezes por R$ 300–800.
+            Antes de fechar, confira três coisas: se o vendedor é loja oficial da marca, se a nota sai em CNPJ
+            (sem ela não há garantia de fábrica) e como é a entrega de volumoso — geladeira avariada no transporte
+            vira disputa, não troca automática.</li>
         </ul>
       </div>
     </div>
@@ -684,9 +687,12 @@ const LARGURA_TIPICA = {
 MODELOS.find(m=>m.id==="midea-mdrs598").largura = "83,5 cm (confirmada)";
 
 const LOJAS = [
+  {n:"Shopee",     u:q=>`https://shopee.com.br/search?keyword=${encodeURIComponent(q)}`},
   {n:"Magalu",     u:q=>`https://www.magazineluiza.com.br/busca/${encodeURIComponent(q)}/`},
   {n:"Amazon",     u:q=>`https://www.amazon.com.br/s?k=${encodeURIComponent(q)}`},
   {n:"Mercado Livre", u:q=>`https://lista.mercadolivre.com.br/${q.trim().replace(/\s+/g,"-")}`},
+  {n:"Leroy Merlin", u:q=>`https://www.leroymerlin.com.br/search?term=${encodeURIComponent(q)}`},
+  {n:"Carrefour",  u:q=>`https://www.carrefour.com.br/busca/${q.trim().replace(/\s+/g,"-")}`},
   {n:"Casas Bahia",u:q=>`https://www.casasbahia.com.br/${q.trim().replace(/\s+/g,"-")}/b`},
   {n:"Ponto",      u:q=>`https://www.pontofrio.com.br/${q.trim().replace(/\s+/g,"-")}/b`},
   {n:"Americanas", u:q=>`https://www.americanas.com.br/busca/${q.trim().replace(/\s+/g,"-")}`},

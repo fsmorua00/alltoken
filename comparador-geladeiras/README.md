@@ -22,8 +22,9 @@ Abra `index.html` em qualquer navegador. Não precisa de servidor, build nem con
 
 - **Índice de compra (0–100)** — 40% custo total, 25% eficiência (kWh por litro), 20% capacidade,
   15% recursos. Normalizado dentro do conjunto filtrado, então muda conforme os filtros.
-- **Busca em 11 lojas** — cada modelo tem link direto de busca em Magalu, Amazon, Mercado Livre,
-  Casas Bahia, Ponto, Americanas, Fast Shop, Buscapé, Zoom, Promobit e Google Shopping.
+- **Busca em 14 lojas** — cada modelo tem link direto de busca em Magalu, Amazon, Mercado Livre,
+  Casas Bahia, Ponto,
+  Americanas, Fast Shop, Shopee, Leroy Merlin, Carrefour, Buscapé, Zoom, Promobit e Google Shopping.
 - **Premissas editáveis** — tarifa (R$/kWh), orçamento e horizonte em anos recalculam tudo.
 - **Preço editável por modelo** — o campo de preço da matriz aceita o valor que você achou hoje;
   custo, ranking e veredito respondem na hora. Fica salvo no `localStorage`.
